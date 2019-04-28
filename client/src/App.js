@@ -2,17 +2,21 @@ import React, { Component } from "react"
 import SpaceMinersContract from "./contracts/SpaceMiners.json"
 import getWeb3 from "./utils/getWeb3"
 import Background from "./components/Background.jsx"
-import NeonButton from "./components/NeonButton.jsx"
+import NeonText from "./components/NeonText.jsx"
 import Header from "./components/Header.jsx"
+import MinerCountSelector from "./components/MinerCountSelector.jsx"
 
 class App extends Component {
   state = {
+    web3: null,
+    accounts: null,
+    contract: null,
+    //
     priceToMine: null,
     planetCapacity: null,
     planetPopulation: null,
-    web3: null,
-    accounts: null,
-    contract: null
+    minersToSend: 1,
+    usersMinersOnPlanet: 0
   }
 
   componentDidMount = async () => {
@@ -51,34 +55,91 @@ class App extends Component {
       const priceToMine = await methods.getPriceToMine().call()
       const planetCapacity = await methods.getPlanetCapacity().call()
       const planetPopulation = await methods.getPlanetPopulation().call()
+      const usersMinersOnPlanet = await methods
+        .getNumUsersMinersOnPlanet()
+        .call()
       console.log(
         `priceToMine: ${priceToMine}, planetCapacity: ${planetCapacity}, planetPopulation: ${planetPopulation}`
       )
-      this.setState({ priceToMine, planetCapacity, planetPopulation })
+      this.setState({
+        priceToMine,
+        planetCapacity,
+        planetPopulation,
+        usersMinersOnPlanet
+      })
     }
   }
 
-  sendMinersToPlanet = async numMiners => {
-    const { accounts, contract } = this.state
+  sendMinersToPlanet = async () => {
+    const { accounts, contract, minersToSend } = this.state
     if (contract) {
       const { methods } = contract
       const from = accounts[0]
-      await methods.sendMinersToPlanet(numMiners).send({ from })
+      await methods.sendMinersToPlanet(minersToSend).send({ from })
     }
   }
 
   render() {
-    if (!this.state.web3) {
+    const {
+      web3,
+      minersToSend,
+      priceToMine,
+      planetCapacity,
+      planetPopulation,
+      usersMinersOnPlanet
+    } = this.state
+    if (!web3) {
       return <div>Loading Web3, accounts, and contract...</div>
     }
-    console.log("test")
+    const totalEth = web3.utils.fromWei(
+      (minersToSend * priceToMine).toString(),
+      "ether"
+    )
+    const completion = planetPopulation / planetCapacity
     return (
       <div>
         <Background>
           <Header>
-            <NeonButton label={"Kerium Supply"} size={2} />
-            <NeonButton label={"Space Miners"} size={4} />
-            <NeonButton label={"Send Miners"} size={2} />
+            <div>
+              <NeonText
+                title={"MINING COMPLETION"}
+                subtitle={`${completion}%`}
+                textAlign={"left"}
+              />
+              <NeonText
+                title={"KERIUM CRYSTALS"}
+                subtitle={"45.7657 kg"}
+                textAlign={"left"}
+              />
+              <NeonText
+                title={"MINERS ON PLANET"}
+                subtitle={usersMinersOnPlanet}
+                textAlign={"left"}
+              />
+            </div>
+            <div>
+              <NeonText
+                title={"SEND MINERS"}
+                subtitle={"number of miners"}
+                textAlign={"right"}
+              />
+              <MinerCountSelector
+                minersToSend={minersToSend}
+                setMiners={newNum => {
+                  this.setState({ minersToSend: newNum })
+                }}
+              />
+              <NeonText
+                title={"COST"}
+                subtitle={`${totalEth} ETH`}
+                textAlign={"right"}
+              />
+              <NeonText
+                title={"SEND"}
+                textAlign={"right"}
+                onClick={this.sendMinersToPlanet}
+              />
+            </div>
           </Header>
         </Background>
       </div>

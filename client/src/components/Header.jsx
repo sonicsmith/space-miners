@@ -1,7 +1,5 @@
 import React, { Component } from "react"
 
-import "./NeonButton.css"
-
 class Header extends Component {
   render() {
     const { children } = this.props
@@ -9,7 +7,9 @@ class Header extends Component {
       <div
         style={{
           position: "absolute",
-          width: "100%",
+          left: "1%",
+          top: "4%",
+          width: "98%",
           zIndex: 1000,
           display: "flex",
           flexDirection: "row",

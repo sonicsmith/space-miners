@@ -321,14 +321,14 @@
     "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol",
     "exportedSymbols": {
       "ERC20Mintable": [
-        1118
+        1123
       ]
     },
-    "id": 1119,
+    "id": 1124,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1092,
+        "id": 1097,
         "literals": [
           "solidity",
           "^",
@@ -341,10 +341,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol",
         "file": "./ERC20.sol",
-        "id": 1093,
+        "id": 1098,
         "nodeType": "ImportDirective",
-        "scope": 1119,
-        "sourceUnit": 1060,
+        "scope": 1124,
+        "sourceUnit": 1065,
         "src": "25:21:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -352,10 +352,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/access/roles/MinterRole.sol",
         "file": "../../access/roles/MinterRole.sol",
-        "id": 1094,
+        "id": 1099,
         "nodeType": "ImportDirective",
-        "scope": 1119,
-        "sourceUnit": 549,
+        "scope": 1124,
+        "sourceUnit": 554,
         "src": "47:43:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -366,17 +366,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1095,
+              "id": 1100,
               "name": "ERC20",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1059,
+              "referencedDeclaration": 1064,
               "src": "178:5:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20_$1059",
+                "typeIdentifier": "t_contract$_ERC20_$1064",
                 "typeString": "contract ERC20"
               }
             },
-            "id": 1096,
+            "id": 1101,
             "nodeType": "InheritanceSpecifier",
             "src": "178:5:8"
           },
@@ -384,42 +384,42 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1097,
+              "id": 1102,
               "name": "MinterRole",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 548,
+              "referencedDeclaration": 553,
               "src": "185:10:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MinterRole_$548",
+                "typeIdentifier": "t_contract$_MinterRole_$553",
                 "typeString": "contract MinterRole"
               }
             },
-            "id": 1098,
+            "id": 1103,
             "nodeType": "InheritanceSpecifier",
             "src": "185:10:8"
           }
         ],
         "contractDependencies": [
-          1059,
-          548,
-          1187
+          1192,
+          1064,
+          553
         ],
         "contractKind": "contract",
         "documentation": "@title ERC20Mintable\n@dev ERC20 minting logic",
         "fullyImplemented": true,
-        "id": 1118,
+        "id": 1123,
         "linearizedBaseContracts": [
-          1118,
-          548,
-          1059,
-          1187
+          1123,
+          553,
+          1064,
+          1192
         ],
         "name": "ERC20Mintable",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1116,
+              "id": 1121,
               "nodeType": "Block",
               "src": "517:54:8",
               "statements": [
@@ -429,11 +429,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1110,
+                        "id": 1115,
                         "name": "to",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1100,
+                        "referencedDeclaration": 1105,
                         "src": "533:2:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -442,11 +442,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 1111,
+                        "id": 1116,
                         "name": "value",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1102,
+                        "referencedDeclaration": 1107,
                         "src": "537:5:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -465,18 +465,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 1109,
+                      "id": 1114,
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 948,
+                      "referencedDeclaration": 953,
                       "src": "527:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256)"
                       }
                     },
-                    "id": 1112,
+                    "id": 1117,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -490,7 +490,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1113,
+                  "id": 1118,
                   "nodeType": "ExpressionStatement",
                   "src": "527:16:8"
                 },
@@ -498,7 +498,7 @@
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "74727565",
-                    "id": 1114,
+                    "id": 1119,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -513,28 +513,28 @@
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 1108,
-                  "id": 1115,
+                  "functionReturnParameters": 1113,
+                  "id": 1120,
                   "nodeType": "Return",
                   "src": "553:11:8"
                 }
               ]
             },
             "documentation": "@dev Function to mint tokens\n@param to The address that will receive the minted tokens.\n@param value The amount of tokens to mint.\n@return A boolean that indicates if the operation was successful.",
-            "id": 1117,
+            "id": 1122,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1105,
+                "id": 1110,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1104,
+                  "id": 1109,
                   "name": "onlyMinter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 481,
+                  "referencedDeclaration": 486,
                   "src": "491:10:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -548,15 +548,15 @@
             "name": "mint",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1103,
+              "id": 1108,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1100,
+                  "id": 1105,
                   "name": "to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1117,
+                  "scope": 1122,
                   "src": "457:10:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -565,7 +565,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1099,
+                    "id": 1104,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "457:7:8",
@@ -580,10 +580,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1102,
+                  "id": 1107,
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1117,
+                  "scope": 1122,
                   "src": "469:13:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -592,7 +592,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1101,
+                    "id": 1106,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "469:7:8",
@@ -608,15 +608,15 @@
               "src": "456:27:8"
             },
             "returnParameters": {
-              "id": 1108,
+              "id": 1113,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1107,
+                  "id": 1112,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1117,
+                  "scope": 1122,
                   "src": "511:4:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -625,7 +625,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1106,
+                    "id": 1111,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "511:4:8",
@@ -640,14 +640,14 @@
               ],
               "src": "510:6:8"
             },
-            "scope": 1118,
+            "scope": 1123,
             "src": "443:128:8",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1119,
+        "scope": 1124,
         "src": "152:421:8"
       }
     ],
@@ -657,14 +657,14 @@
     "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol",
     "exportedSymbols": {
       "ERC20Mintable": [
-        1118
+        1123
       ]
     },
-    "id": 1119,
+    "id": 1124,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1092,
+        "id": 1097,
         "literals": [
           "solidity",
           "^",
@@ -677,10 +677,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol",
         "file": "./ERC20.sol",
-        "id": 1093,
+        "id": 1098,
         "nodeType": "ImportDirective",
-        "scope": 1119,
-        "sourceUnit": 1060,
+        "scope": 1124,
+        "sourceUnit": 1065,
         "src": "25:21:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -688,10 +688,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/access/roles/MinterRole.sol",
         "file": "../../access/roles/MinterRole.sol",
-        "id": 1094,
+        "id": 1099,
         "nodeType": "ImportDirective",
-        "scope": 1119,
-        "sourceUnit": 549,
+        "scope": 1124,
+        "sourceUnit": 554,
         "src": "47:43:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -702,17 +702,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1095,
+              "id": 1100,
               "name": "ERC20",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1059,
+              "referencedDeclaration": 1064,
               "src": "178:5:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20_$1059",
+                "typeIdentifier": "t_contract$_ERC20_$1064",
                 "typeString": "contract ERC20"
               }
             },
-            "id": 1096,
+            "id": 1101,
             "nodeType": "InheritanceSpecifier",
             "src": "178:5:8"
           },
@@ -720,42 +720,42 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1097,
+              "id": 1102,
               "name": "MinterRole",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 548,
+              "referencedDeclaration": 553,
               "src": "185:10:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_MinterRole_$548",
+                "typeIdentifier": "t_contract$_MinterRole_$553",
                 "typeString": "contract MinterRole"
               }
             },
-            "id": 1098,
+            "id": 1103,
             "nodeType": "InheritanceSpecifier",
             "src": "185:10:8"
           }
         ],
         "contractDependencies": [
-          1059,
-          548,
-          1187
+          1192,
+          1064,
+          553
         ],
         "contractKind": "contract",
         "documentation": "@title ERC20Mintable\n@dev ERC20 minting logic",
         "fullyImplemented": true,
-        "id": 1118,
+        "id": 1123,
         "linearizedBaseContracts": [
-          1118,
-          548,
-          1059,
-          1187
+          1123,
+          553,
+          1064,
+          1192
         ],
         "name": "ERC20Mintable",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1116,
+              "id": 1121,
               "nodeType": "Block",
               "src": "517:54:8",
               "statements": [
@@ -765,11 +765,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1110,
+                        "id": 1115,
                         "name": "to",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1100,
+                        "referencedDeclaration": 1105,
                         "src": "533:2:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -778,11 +778,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 1111,
+                        "id": 1116,
                         "name": "value",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1102,
+                        "referencedDeclaration": 1107,
                         "src": "537:5:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -801,18 +801,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 1109,
+                      "id": 1114,
                       "name": "_mint",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 948,
+                      "referencedDeclaration": 953,
                       "src": "527:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256)"
                       }
                     },
-                    "id": 1112,
+                    "id": 1117,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -826,7 +826,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1113,
+                  "id": 1118,
                   "nodeType": "ExpressionStatement",
                   "src": "527:16:8"
                 },
@@ -834,7 +834,7 @@
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "74727565",
-                    "id": 1114,
+                    "id": 1119,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -849,28 +849,28 @@
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 1108,
-                  "id": 1115,
+                  "functionReturnParameters": 1113,
+                  "id": 1120,
                   "nodeType": "Return",
                   "src": "553:11:8"
                 }
               ]
             },
             "documentation": "@dev Function to mint tokens\n@param to The address that will receive the minted tokens.\n@param value The amount of tokens to mint.\n@return A boolean that indicates if the operation was successful.",
-            "id": 1117,
+            "id": 1122,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1105,
+                "id": 1110,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1104,
+                  "id": 1109,
                   "name": "onlyMinter",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 481,
+                  "referencedDeclaration": 486,
                   "src": "491:10:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -884,15 +884,15 @@
             "name": "mint",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1103,
+              "id": 1108,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1100,
+                  "id": 1105,
                   "name": "to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1117,
+                  "scope": 1122,
                   "src": "457:10:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -901,7 +901,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1099,
+                    "id": 1104,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "457:7:8",
@@ -916,10 +916,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1102,
+                  "id": 1107,
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1117,
+                  "scope": 1122,
                   "src": "469:13:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -928,7 +928,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1101,
+                    "id": 1106,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "469:7:8",
@@ -944,15 +944,15 @@
               "src": "456:27:8"
             },
             "returnParameters": {
-              "id": 1108,
+              "id": 1113,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1107,
+                  "id": 1112,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1117,
+                  "scope": 1122,
                   "src": "511:4:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -961,7 +961,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1106,
+                    "id": 1111,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "511:4:8",
@@ -976,14 +976,14 @@
               ],
               "src": "510:6:8"
             },
-            "scope": 1118,
+            "scope": 1123,
             "src": "443:128:8",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1119,
+        "scope": 1124,
         "src": "152:421:8"
       }
     ],
@@ -995,7 +995,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-27T21:01:20.663Z",
+  "updatedAt": "2019-04-28T09:29:16.949Z",
   "devdoc": {
     "details": "ERC20 minting logic",
     "methods": {

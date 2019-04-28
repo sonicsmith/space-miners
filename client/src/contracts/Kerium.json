@@ -418,7 +418,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 18,
-        "sourceUnit": 1091,
+        "sourceUnit": 1096,
         "src": "25:71:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -429,7 +429,7 @@
         "id": 3,
         "nodeType": "ImportDirective",
         "scope": 18,
-        "sourceUnit": 1119,
+        "sourceUnit": 1124,
         "src": "97:71:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -443,10 +443,10 @@
               "id": 4,
               "name": "ERC20Burnable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1090,
+              "referencedDeclaration": 1095,
               "src": "189:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20Burnable_$1090",
+                "typeIdentifier": "t_contract$_ERC20Burnable_$1095",
                 "typeString": "contract ERC20Burnable"
               }
             },
@@ -461,10 +461,10 @@
               "id": 6,
               "name": "ERC20Mintable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1118,
+              "referencedDeclaration": 1123,
               "src": "204:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20Mintable_$1118",
+                "typeIdentifier": "t_contract$_ERC20Mintable_$1123",
                 "typeString": "contract ERC20Mintable"
               }
             },
@@ -474,11 +474,11 @@
           }
         ],
         "contractDependencies": [
-          1059,
-          548,
-          1090,
-          1118,
-          1187
+          1123,
+          1192,
+          1095,
+          1064,
+          553
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -486,11 +486,11 @@
         "id": 17,
         "linearizedBaseContracts": [
           17,
-          1118,
-          548,
-          1090,
-          1059,
-          1187
+          1123,
+          553,
+          1095,
+          1064,
+          1192
         ],
         "name": "Kerium",
         "nodeType": "ContractDefinition",
@@ -658,7 +658,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 18,
-        "sourceUnit": 1091,
+        "sourceUnit": 1096,
         "src": "25:71:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -669,7 +669,7 @@
         "id": 3,
         "nodeType": "ImportDirective",
         "scope": 18,
-        "sourceUnit": 1119,
+        "sourceUnit": 1124,
         "src": "97:71:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -683,10 +683,10 @@
               "id": 4,
               "name": "ERC20Burnable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1090,
+              "referencedDeclaration": 1095,
               "src": "189:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20Burnable_$1090",
+                "typeIdentifier": "t_contract$_ERC20Burnable_$1095",
                 "typeString": "contract ERC20Burnable"
               }
             },
@@ -701,10 +701,10 @@
               "id": 6,
               "name": "ERC20Mintable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1118,
+              "referencedDeclaration": 1123,
               "src": "204:13:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20Mintable_$1118",
+                "typeIdentifier": "t_contract$_ERC20Mintable_$1123",
                 "typeString": "contract ERC20Mintable"
               }
             },
@@ -714,11 +714,11 @@
           }
         ],
         "contractDependencies": [
-          1059,
-          548,
-          1090,
-          1118,
-          1187
+          1123,
+          1192,
+          1095,
+          1064,
+          553
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -726,11 +726,11 @@
         "id": 17,
         "linearizedBaseContracts": [
           17,
-          1118,
-          548,
-          1090,
-          1059,
-          1187
+          1123,
+          553,
+          1095,
+          1064,
+          1192
         ],
         "name": "Kerium",
         "nodeType": "ContractDefinition",
@@ -877,7 +877,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-27T21:01:20.654Z",
+  "updatedAt": "2019-04-28T09:29:16.942Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {

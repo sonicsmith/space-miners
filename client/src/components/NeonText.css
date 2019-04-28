@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css?family=Audiowide");
+
+/*Neon*/
+.neon {
+  text-decoration: none;
+  /* -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s; */
+  color: #fff;
+  font-family: "Audiowide", "cursive";
+  /* animation: neon1 1s ease-in-out infinite alternate; */
+  /* transform: translate3d(0, 0, 0); */
+}
+
+.neonButton {
+  text-decoration: none;
+  /* -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s; */
+  color: #fff;
+  font-family: "Audiowide", "cursive";
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10%;
+}
+
+.neonButton:hover {
+  color: #ff1177;
+  text-shadow: 0 0 10px #fff;
+  -webkit-animation: none;
+  -moz-animation: none;
+  animation: none;
+  cursor: pointer;
+}
+
+@keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
+      0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
+      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+  }
+}

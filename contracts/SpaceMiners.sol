@@ -26,13 +26,14 @@ contract SpaceMiners {
     return planetPopulation;
   }
 
-  function getIsMinerOnPlanet() public view returns (bool) {
+  function getNumUsersMinersOnPlanet() public view returns (uint) {
+    uint count = 0;
     for (uint i = 0; i < PLANET_CAPACITY; i++) {
       if (miners[i] == msg.sender) {
-        return true;
+        count++;
       }
     }
-    return false;
+    return count;
   }
 
   function sendMinersToPlanet(uint numMiners) public payable {
