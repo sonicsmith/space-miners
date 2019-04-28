@@ -1,0 +1,351 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q,
+blockquote {
+  quotes: none;
+}
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+.app {
+  overflow: hidden;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+}
+.app .sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+}
+.app .sky .background-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, black, #161256 30%, #f556fb);
+}
+.app .sky .background-right {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(-135deg, black, #161256 30%, #f556fb);
+}
+.app .sky .sun {
+  position: absolute;
+  bottom: 0%;
+  left: calc(50% - 10vw);
+  width: 20vw;
+  height: 20vw;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #fffc3a, #fa1abb);
+}
+
+.app .ground {
+  z-index: -1;
+  position: absolute;
+  top: 49%;
+  left: 0%;
+  width: 100%;
+  height: 65%;
+  background: linear-gradient(to bottom, #161256, black);
+}
+
+.app .ground .wave {
+  background: #19eefe;
+  box-shadow: 0 1px 10px 1px #19eefe;
+}
+.app .ground .wave.vertical {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 1000%;
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+}
+.app .ground .wave.vertical.right.wave-0 {
+  -webkit-transform: rotate(-38deg);
+  transform: rotate(-38deg);
+}
+.app .ground .wave.vertical.right.wave-1 {
+  -webkit-transform: rotate(-52deg);
+  transform: rotate(-52deg);
+}
+.app .ground .wave.vertical.right.wave-2 {
+  -webkit-transform: rotate(-63deg);
+  transform: rotate(-63deg);
+}
+.app .ground .wave.vertical.right.wave-3 {
+  -webkit-transform: rotate(-72deg);
+  transform: rotate(-72deg);
+}
+.app .ground .wave.vertical.right.wave-4 {
+  -webkit-transform: rotate(-79.5deg);
+  transform: rotate(-79.5deg);
+}
+.app .ground .wave.vertical.right.wave-5 {
+  -webkit-transform: rotate(-84.5deg);
+  transform: rotate(-84.5deg);
+}
+.app .ground .wave.vertical.left.wave-0 {
+  -webkit-transform: rotate(38deg);
+  transform: rotate(38deg);
+}
+.app .ground .wave.vertical.left.wave-1 {
+  -webkit-transform: rotate(52deg);
+  transform: rotate(52deg);
+}
+.app .ground .wave.vertical.left.wave-2 {
+  -webkit-transform: rotate(63deg);
+  transform: rotate(63deg);
+}
+.app .ground .wave.vertical.left.wave-3 {
+  -webkit-transform: rotate(72deg);
+  transform: rotate(72deg);
+}
+.app .ground .wave.vertical.left.wave-4 {
+  -webkit-transform: rotate(79.5deg);
+  transform: rotate(79.5deg);
+}
+.app .ground .wave.vertical.left.wave-5 {
+  -webkit-transform: rotate(84.5deg);
+  transform: rotate(84.5deg);
+}
+.app .ground .wave.horizontal {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 1px;
+}
+.app .ground .wave.horizontal.left {
+  right: 50%;
+  -webkit-animation: infinite wave-left 9s cubic-bezier(1, 0.01, 1, 0.9);
+  animation: infinite wave-left 9s cubic-bezier(1, 0.01, 1, 0.9);
+}
+.app .ground .wave.horizontal.right {
+  left: calc(50% + 2px);
+  -webkit-animation: infinite wave-right 9s cubic-bezier(1, 0.01, 1, 0.9);
+  animation: infinite wave-right 9s cubic-bezier(1, 0.01, 1, 0.9);
+}
+.app .ground .wave.horizontal.wave-10 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+.app .ground .wave.horizontal.wave-11 {
+  -webkit-animation-delay: -1.8s;
+  animation-delay: -1.8s;
+}
+.app .ground .wave.horizontal.wave-12 {
+  -webkit-animation-delay: -2.7s;
+  animation-delay: -2.7s;
+}
+.app .ground .wave.horizontal.wave-13 {
+  -webkit-animation-delay: -3.6s;
+  animation-delay: -3.6s;
+}
+.app .ground .wave.horizontal.wave-14 {
+  -webkit-animation-delay: -4.5s;
+  animation-delay: -4.5s;
+}
+.app .ground .wave.horizontal.wave-15 {
+  -webkit-animation-delay: -5.4s;
+  animation-delay: -5.4s;
+}
+.app .ground .wave.horizontal.wave-16 {
+  -webkit-animation-delay: -6.3s;
+  animation-delay: -6.3s;
+}
+.app .ground .wave.horizontal.wave-17 {
+  -webkit-animation-delay: -7.2s;
+  animation-delay: -7.2s;
+}
+.app .ground .wave.horizontal.wave-18 {
+  -webkit-animation-delay: -8.1s;
+  animation-delay: -8.1s;
+}
+.app .ground .wave.horizontal.wave-19 {
+  -webkit-animation-delay: -9s;
+  animation-delay: -9s;
+}
+
+@-webkit-keyframes wave-left {
+  100% {
+    -webkit-transform: translate(0vh, 65vh);
+    transform: translate(0vh, 65vh);
+  }
+}
+
+@keyframes wave-left {
+  100% {
+    -webkit-transform: translate(0vh, 65vh);
+    transform: translate(0vh, 65vh);
+  }
+}
+@-webkit-keyframes wave-right {
+  100% {
+    -webkit-transform: translate(0, 65vh);
+    transform: translate(0, 65vh);
+  }
+}
+@keyframes wave-right {
+  100% {
+    -webkit-transform: translate(0, 65vh);
+    transform: translate(0, 65vh);
+  }
+}
+@-webkit-keyframes road-animation {
+  100% {
+    -webkit-transform: translate(0, 65vh);
+    transform: translate(0, 65vh);
+    height: 9vh;
+  }
+}
+@keyframes road-animation {
+  100% {
+    -webkit-transform: translate(0, 65vh);
+    transform: translate(0, 65vh);
+    height: 9vh;
+  }
+}
