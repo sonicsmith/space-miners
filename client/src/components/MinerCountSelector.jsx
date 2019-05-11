@@ -9,9 +9,9 @@ class MinerCountSelector extends Component {
         className="neonButton"
         style={{ marginRight: 8 }}
         onClick={() => {
-          const { minersToSend, setMiners } = this.props
-          if (minersToSend + number > 0) {
-            setMiners(minersToSend + number)
+          const { numMinersToSend, setMiners } = this.props
+          if (numMinersToSend + number > 0) {
+            setMiners(numMinersToSend + number)
           }
         }}
       >
@@ -21,13 +21,13 @@ class MinerCountSelector extends Component {
   }
 
   render() {
-    const { minersToSend } = this.props
+    const { numMinersToSend } = this.props
     return (
       <div className="neon" style={{ fontSize: "2em", textAlign: "right" }}>
         <div>
           {this.minerButton(-1)}
           <span style={{ marginRight: 24, marginLeft: 24 }}>
-            {minersToSend}
+            {numMinersToSend}
           </span>
           {this.minerButton(1)}
         </div>

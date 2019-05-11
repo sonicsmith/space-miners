@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "react": "^16.6.3",
+    "react-3d-viewer": "github:sonicsmith/react-3d-viewer#master",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
+    "stl-viewer": "^0.12.0",
     "web3": "^1.0.0-beta.37"
   },
   "scripts": {
