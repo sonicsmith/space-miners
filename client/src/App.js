@@ -103,7 +103,9 @@ class App extends Component {
       methods
         .sendMinersToPlanet(numMinersToSend)
         .send({ from, value, gas: 300000 })
-        .then(console.log) // TODO: Display spacecraft
+        .then(() => {
+          this.setState({ numMinersInFlight: Math.min(5, numMinersToSend) })
+        })
         .catch(e => {
           alert("Error, please try again.")
         })
@@ -140,7 +142,8 @@ class App extends Component {
       planetPopulation,
       usersMinersOnPlanet,
       keriumUnclaimed,
-      keriumClaimed
+      keriumClaimed,
+      numMinersInFlight
     } = this.state
 
     if (!web3) {
@@ -161,12 +164,18 @@ class App extends Component {
       usersMinersOnPlanet &&
       keriumUnclaimed &&
       keriumClaimed
-    const gotData = true
-    const costToSend = 0
+
     return (
       <div>
         <Background>
-          <SpacecraftLauncher numCraft={numMinersInFlight} />
+          {numMinersInFlight && (
+            <SpacecraftLauncher
+              numCraft={numMinersInFlight}
+              finished={() => {
+                this.setState({ numMinersInFlight: 0 })
+              }}
+            />
+          )}
           {gotData ? (
             <HUD
               completion={(planetPopulation / planetCapacity) * 100}

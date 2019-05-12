@@ -4,9 +4,6 @@ import Spacecraft from "./Spacecraft.jsx"
 class SpacecraftLauncher extends Component {
   render() {
     const { finished, numCraft } = this.props
-    if (numCraft === 0) {
-      return
-    }
     const crafts = []
     for (let i = 0; i < numCraft; i++) {
       crafts.push(i)
@@ -22,7 +19,7 @@ class SpacecraftLauncher extends Component {
     return (
       <div>
         {crafts.map(id => (
-          <Spacecraft craftId={id} arrived={onArrival} />
+          <Spacecraft key={id} craftId={id} arrived={onArrival} />
         ))}
       </div>
     )

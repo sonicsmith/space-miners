@@ -400,9 +400,9 @@
           }
         ],
         "contractDependencies": [
+          686,
           1306,
-          1492,
-          686
+          1492
         ],
         "contractKind": "contract",
         "documentation": "@title ERC20Mintable\n@dev ERC20 minting logic",
@@ -736,9 +736,9 @@
           }
         ],
         "contractDependencies": [
+          686,
           1306,
-          1492,
-          686
+          1492
         ],
         "contractKind": "contract",
         "documentation": "@title ERC20Mintable\n@dev ERC20 minting logic",
@@ -995,7 +995,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-05T02:12:46.969Z",
+  "updatedAt": "2019-05-12T01:45:02.508Z",
   "devdoc": {
     "details": "ERC20 minting logic",
     "methods": {

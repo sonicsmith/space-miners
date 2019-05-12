@@ -80,10 +80,26 @@ contract SpaceMiners is Ownable {
     }
   }
 
+  function getRandom(address seed, uint cap) pure internal returns (uint) {
+    return uint256(keccak256(abi.encodePacked(seed))) % cap;
+  }
+
   function getRandomisedMinerList() view internal returns (address[] memory) {
-    // TODO: Use random engine to generate indices
-    // Then use that list to return miners
-    return miners;
+    uint rnd = uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty))) % PLANET_CAPACITY;
+    address seed = address(miners[rnd]);
+    // Copy list
+    address[] memory rndMiners = new address[](PLANET_CAPACITY);
+    for (uint i = 0; i < PLANET_CAPACITY; i++) {
+      rndMiners[i] = miners[i];
+    }
+    // Shuffle list
+    for (uint i = 0; i < PLANET_CAPACITY; i++) {
+      uint randomIndex = getRandom(seed, PLANET_CAPACITY);
+      address temp = rndMiners[i];
+      rndMiners[i] = rndMiners[randomIndex];
+      rndMiners[randomIndex] = temp;
+    }
+    return rndMiners;
   }
 
   function percentOfValue(uint percent, uint value) pure internal returns (uint) {

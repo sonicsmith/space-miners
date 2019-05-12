@@ -206,12 +206,12 @@ summary {
   transform-origin: top left;
 }
 .app .ground .wave.vertical.right.wave-0 {
-  -webkit-transform: rotate(-38deg);
-  transform: rotate(-38deg);
+  -webkit-transform: rotate(-23deg);
+  transform: rotate(-23deg);
 }
 .app .ground .wave.vertical.right.wave-1 {
-  -webkit-transform: rotate(-52deg);
-  transform: rotate(-52deg);
+  -webkit-transform: rotate(-50deg);
+  transform: rotate(-50deg);
 }
 .app .ground .wave.vertical.right.wave-2 {
   -webkit-transform: rotate(-63deg);
@@ -230,12 +230,12 @@ summary {
   transform: rotate(-84.5deg);
 }
 .app .ground .wave.vertical.left.wave-0 {
-  -webkit-transform: rotate(38deg);
-  transform: rotate(38deg);
+  -webkit-transform: rotate(23deg);
+  transform: rotate(23deg);
 }
 .app .ground .wave.vertical.left.wave-1 {
-  -webkit-transform: rotate(52deg);
-  transform: rotate(52deg);
+  -webkit-transform: rotate(50deg);
+  transform: rotate(50deg);
 }
 .app .ground .wave.vertical.left.wave-2 {
   -webkit-transform: rotate(63deg);
@@ -260,7 +260,7 @@ summary {
   height: 1px;
 }
 .app .ground .wave.horizontal.left {
-  right: 50%;
+  right: 49.5%;
   -webkit-animation: infinite wave-left 9s cubic-bezier(1, 0.01, 1, 0.9);
   animation: infinite wave-left 9s cubic-bezier(1, 0.01, 1, 0.9);
 }

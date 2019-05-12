@@ -12,7 +12,8 @@ class Spacecraft extends Component {
       width: 0,
       height: 0,
       position: { x: this.randomX, y: 1, z: 0 },
-      rotation: { x: this.randomX * 0.7, y: -1, z: 0 }
+      rotation: { x: 0, y: -1, z: this.randomX * 0.7 },
+      scale: { x: 1, y: 1, z: 1 }
     }
   }
 
@@ -27,24 +28,29 @@ class Spacecraft extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.tick = Tick(() => {
-        const { position, rotation } = this.state
+        const { position, rotation, scale } = this.state
         const yAmount = (4 + position.y) / 100
         const xAmount = (1 + position.x) / 100
         if (this.randomX > 0) {
           position.x -= xAmount
-          rotation.x -= 0.002
+          rotation.z -= 0.002
         } else {
           position.x += xAmount
-          rotation.x += 0.002
+          rotation.z += 0.002
+          // to center
+          position.x -= 0.02
         }
 
         position.y -= yAmount
         position.z -= 0.035
+        scale.x -= 0.001
+        scale.y -= 0.001
+        scale.z -= 0.001
         if (position.z > 10) {
           Tick(() => {})
           this.props.arrived(this.props.craftId)
         }
-        this.setState({ position, rotation })
+        this.setState({ position, rotation, scale })
       })
     }, (this.props.craftId + 1) * 1000)
   }
@@ -70,6 +76,7 @@ class Spacecraft extends Component {
           src={`${path}${modelName}`}
           position={this.state.position}
           rotation={this.state.rotation}
+          scale={this.state.scale}
         >
           <AmbientLight color={0xffaaaa} />
         </GLTFModel>

@@ -10362,12 +10362,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x3311630654454b5B3c26E887Dfa56463eB8fC0bC",
-      "transactionHash": "0x8b6fed576746d9a500843f916c3385dc2df540f664c02bb5b5f4bd091323de93"
+      "address": "0x6A33A6E5D28640098e62E7020cAb119f478B429E",
+      "transactionHash": "0x4dc3708910fd2b89507c3a0e4d9d22ad82892f44af44449f56744a05bab9b163"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-05T02:12:53.827Z",
+  "updatedAt": "2019-05-12T01:45:10.888Z",
   "devdoc": {
     "methods": {
       "isOwner()": {

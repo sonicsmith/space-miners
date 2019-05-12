@@ -560,12 +560,12 @@
           }
         ],
         "contractDependencies": [
+          686,
           1306,
+          1337,
           1395,
           1423,
-          1492,
-          1337,
-          686
+          1492
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -895,12 +895,12 @@
           }
         ],
         "contractDependencies": [
+          686,
           1306,
+          1337,
           1395,
           1423,
-          1492,
-          1337,
-          686
+          1492
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -1170,12 +1170,12 @@
         }
       },
       "links": {},
-      "address": "0xF352dbB0B9fA4c31F74922DDAF25Eec850A5784d",
-      "transactionHash": "0x920901bb695473fc90fc09f9e461340fc65d6d1830ca455a9f9321c7fdc84aa2"
+      "address": "0xfc6dbd2f377895d19D32bBCE8404b3Aed5B0fC13",
+      "transactionHash": "0xc8ede3915b5d16704857f712a581ae8e511eb494c1caff4e42e99ea3025403c2"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-05T02:12:53.809Z",
+  "updatedAt": "2019-05-12T01:45:10.883Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {
