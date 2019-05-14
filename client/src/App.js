@@ -71,11 +71,10 @@ class App extends Component {
 
   refresh = async () => {
     console.log("refresh")
-    const { contract, token, accounts } = this.state
-    if (contract && token) {
+    const { contract, accounts } = this.state
+    if (contract) {
       const { methods } = contract
-      const keriumUnclaimed = await methods.getKeriumHoldings().call()
-      const keriumClaimed = await token.methods.balanceOf(accounts[0]).call()
+      const keriumClaimed = await methods.balanceOf(accounts[0]).call()
       const priceToMine = await methods.getPriceToMine().call()
       const planetCapacity = await methods.getPlanetCapacity().call()
       const planetPopulation = await methods.getPlanetPopulation().call()
@@ -87,7 +86,6 @@ class App extends Component {
         planetCapacity,
         planetPopulation,
         usersMinersOnPlanet,
-        keriumUnclaimed,
         keriumClaimed
       })
     }
@@ -112,27 +110,6 @@ class App extends Component {
     }
   }
 
-  claimKerium = () => {
-    const { accounts, contract, keriumUnclaimed } = this.state
-    if (keriumUnclaimed <= 0) {
-      alert("You have no Kerium to claim")
-      return
-    }
-    if (contract) {
-      const { methods } = contract
-      const from = accounts[0]
-      methods
-        .collectKeriumHoldings()
-        .send({ from, value: 0, gas: 300000 })
-        .then(() => {
-          alert("Your Kerium has been added to your holdings.")
-        })
-        .catch(e => {
-          alert("Error, please try again.")
-        })
-    }
-  }
-
   render() {
     const {
       web3,
@@ -141,7 +118,6 @@ class App extends Component {
       planetCapacity,
       planetPopulation,
       usersMinersOnPlanet,
-      keriumUnclaimed,
       keriumClaimed,
       numMinersInFlight
     } = this.state
@@ -162,7 +138,6 @@ class App extends Component {
       planetCapacity &&
       planetPopulation &&
       usersMinersOnPlanet &&
-      keriumUnclaimed &&
       keriumClaimed
 
     return (
@@ -179,14 +154,12 @@ class App extends Component {
           {gotData ? (
             <HUD
               completion={(planetPopulation / planetCapacity) * 100}
-              keriumUnclaimed={keriumUnclaimed}
               keriumClaimed={keriumClaimed}
               usersMinersOnPlanet={usersMinersOnPlanet}
               costToSend={costToSend}
               numMinersToSend={numMinersToSend}
               setMinersToSend={num => this.setState({ numMinersToSend: num })}
               sendMinersToPlanet={this.sendMinersToPlanet}
-              claimKerium={this.claimKerium}
             />
           ) : (
             <h1>LOADING</h1>

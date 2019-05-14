@@ -7,14 +7,12 @@ class HUD extends Component {
   render() {
     const {
       completion,
-      keriumUnclaimed,
       keriumClaimed,
       usersMinersOnPlanet,
       numMinersToSend,
       costToSend,
       setMinersToSend,
-      sendMinersToPlanet,
-      claimKerium
+      sendMinersToPlanet
     } = this.props
 
     return (
@@ -33,11 +31,6 @@ class HUD extends Component {
           <NeonText
             title={"KERIUM CLAIMED"}
             subtitle={`${keriumClaimed} µg`}
-            textAlign={"left"}
-          />
-          <NeonText
-            title={"KERIUM UNCLAIMED"}
-            subtitle={`${keriumUnclaimed} µg`}
             textAlign={"left"}
           />
         </div>
@@ -62,11 +55,6 @@ class HUD extends Component {
             title={"SEND MINERS"}
             textAlign={"right"}
             onClick={sendMinersToPlanet}
-          />
-          <NeonText
-            title={"CLAIM KERIUM"}
-            textAlign={"left"}
-            onClick={claimKerium}
           />
         </div>
       </Header>

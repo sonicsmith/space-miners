@@ -3,19 +3,14 @@ pragma solidity ^0.5.2;
 import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
 import "../contracts/SpaceMiners.sol";
-import "../contracts/Kerium.sol";
 
 contract TestSpaceMiners {
 
   SpaceMiners public spaceMiners;
-  Kerium public kerium;
   uint public initialBalance = 1000 finney;
 
   function beforeAll() public {
     spaceMiners = new SpaceMiners();
-    kerium = new Kerium();
-    kerium.addMinter(address(spaceMiners));
-    spaceMiners.setKeriumAddress(address(kerium));
   }
 
   function testItStartsFresh() public {
@@ -38,7 +33,7 @@ contract TestSpaceMiners {
     spaceMiners.sendMinersToPlanet.value(cost * numMiners)(numMiners);
     uint planetPopulation = spaceMiners.getPlanetPopulation();
     Assert.equal(planetPopulation, 0, "Mining to capacity clears population");
-    uint keriumAmount = spaceMiners.getKeriumHoldings();
+    uint keriumAmount = spaceMiners.balanceOf(address(this));
     uint planetCapacity = spaceMiners.getPlanetCapacity();
     uint expectedAmount = (95 * cost * planetCapacity) / 100;
     Assert.equal(keriumAmount, expectedAmount, "It gives out the right amount of Kerium");

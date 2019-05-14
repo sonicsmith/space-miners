@@ -1,11 +1,16 @@
 pragma solidity ^0.5.2;
 
+// GAME
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
-import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
-import "openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
-contract SpaceMiners is Ownable {
+// TOKEN
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20Burnable.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol";
+
+contract SpaceMiners is Ownable, ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable {
 
   using SafeMath for uint;
 
@@ -15,15 +20,7 @@ contract SpaceMiners is Ownable {
   uint ownerHoldings = 0;
   bool planetMinable = true;
 
-  mapping(address => uint) public keriumHoldings;
-
   address[] miners;
-
-  ERC20Mintable public ERC20Interface;
-
-  function setKeriumAddress(address tokenAddress) public onlyOwner {
-    ERC20Interface = ERC20Mintable(tokenAddress);
-  }
 
   function setPlanetMinable(bool isMinable) public onlyOwner {
     planetMinable = isMinable;
@@ -49,17 +46,6 @@ contract SpaceMiners is Ownable {
       }
     }
     return count;
-  }
-
-  function getKeriumHoldings() public payable returns (uint) {
-    return keriumHoldings[msg.sender];
-  }
-
-  function collectKeriumHoldings() public payable {
-    require(keriumHoldings[msg.sender] > 0, "No Kerium holdings found");
-    uint total = keriumHoldings[msg.sender];
-    keriumHoldings[msg.sender] = 0;
-    ERC20Interface.mint(msg.sender, total);
   }
 
   function getRandom(uint cap) view internal returns (uint) {
@@ -99,13 +85,13 @@ contract SpaceMiners is Ownable {
   }
 
   function getEthToKeriumRatio() pure public returns (uint) {
-    // TODO: Get price from Bancor
+    // TODO: Get price from Bancor algo
     return 1;
   }
 
   function giveMinerReward(address recipient, uint rewardAmount) internal {
     uint keriumAmount = rewardAmount.mul(getEthToKeriumRatio());
-    keriumHoldings[recipient] = keriumHoldings[recipient].add(keriumAmount);
+    mint(recipient, keriumAmount);
   }
 
   function rewardMiners() internal {
@@ -132,6 +118,17 @@ contract SpaceMiners is Ownable {
     msg.sender.transfer(ownerHoldings);
     ownerHoldings = 0;
   }
+
+
+  /** TOKEN RELATED **/
+  constructor()
+    ERC20Burnable()
+    ERC20Mintable()
+    ERC20Detailed("Kerium", "KRM", 18)
+    ERC20()
+    public {}
+  /*******************/
+
 
   function() external payable {}
 
