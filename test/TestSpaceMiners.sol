@@ -51,6 +51,13 @@ contract TestSpaceMiners {
     spaceMiners.sendMinersToPlanet.value(cost * numMiners)(numMiners);
   }
 
+  // function testTheOwnerCanCashOut() public {
+  //   uint balBefore = address(this).balance;
+  //   spaceMiners.cashOutOwnerFee.value(0);
+  //   uint balAfter = address(this).balance;
+  //   Assert.isTrue(balBefore > balAfter, "It pays out the owner");
+  // }
+
   function() external payable {}
 
 }

@@ -12,11 +12,12 @@ contract SpaceMiners is Ownable {
   uint public PRICE_TO_MINE = 20 finney;
   uint PLANET_CAPACITY = 10;
   uint OWNER_FEE_PERCENT = 5;
-  uint planetPopulation = 0;
+  uint ownerHoldings = 0;
   bool planetMinable = true;
+
   mapping(address => uint) public keriumHoldings;
 
-  address[] miners = new address[](PLANET_CAPACITY);
+  address[] miners;
 
   ERC20Mintable public ERC20Interface;
 
@@ -37,12 +38,12 @@ contract SpaceMiners is Ownable {
   }
 
   function getPlanetPopulation() public view returns (uint) {
-    return planetPopulation;
+    return miners.length;
   }
 
   function getNumUsersMinersOnPlanet() public view returns (uint) {
     uint count = 0;
-    for (uint i = 0; i < planetPopulation; i++) {
+    for (uint i = 0; i < miners.length; i++) {
       if (miners[i] == msg.sender) {
         count++;
       }
@@ -61,10 +62,23 @@ contract SpaceMiners is Ownable {
     ERC20Interface.mint(msg.sender, total);
   }
 
+  function getRandom(uint cap) view internal returns (uint) {
+    return uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty))) % cap;
+  }
+
   function sendSingleMinerToPlanet(address miner) internal {
-    miners[planetPopulation] = miner;
-    planetPopulation = planetPopulation.add(1);
-    if (planetPopulation == PLANET_CAPACITY) {
+    // Place new miner randomly into list
+    uint rnd = 0;
+    if (miners.length > 0) {
+      rnd = getRandom(miners.length);
+    }
+    if (rnd <= miners.length) {
+      miners.push(miner);
+    } else {
+      miners.push(miners[rnd]);
+      miners[rnd] = miner;
+    }
+    if (miners.length == PLANET_CAPACITY) {
       planetMinable = false;
       rewardMiners();
       planetMinable = true;
@@ -74,32 +88,10 @@ contract SpaceMiners is Ownable {
   function sendMinersToPlanet(uint numMiners) public payable {
     require(planetMinable, "Planet is closed");
     require(msg.value >= numMiners * PRICE_TO_MINE, "Not enough paid for mining");
-    require(planetPopulation < PLANET_CAPACITY, "Planet is full");
+    require(miners.length < PLANET_CAPACITY, "Planet is full");
     for (uint i = 0; i < numMiners; i++) {
       sendSingleMinerToPlanet(msg.sender);
     }
-  }
-
-  function getRandom(address seed, uint cap) pure internal returns (uint) {
-    return uint256(keccak256(abi.encodePacked(seed))) % cap;
-  }
-
-  function getRandomisedMinerList() view internal returns (address[] memory) {
-    uint rnd = uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty))) % PLANET_CAPACITY;
-    address seed = address(miners[rnd]);
-    // Copy list
-    address[] memory rndMiners = new address[](PLANET_CAPACITY);
-    for (uint i = 0; i < PLANET_CAPACITY; i++) {
-      rndMiners[i] = miners[i];
-    }
-    // Shuffle list
-    for (uint i = 0; i < PLANET_CAPACITY; i++) {
-      uint randomIndex = getRandom(seed, PLANET_CAPACITY);
-      address temp = rndMiners[i];
-      rndMiners[i] = rndMiners[randomIndex];
-      rndMiners[randomIndex] = temp;
-    }
-    return rndMiners;
   }
 
   function percentOfValue(uint percent, uint value) pure internal returns (uint) {
@@ -120,20 +112,25 @@ contract SpaceMiners is Ownable {
     // First take OWNER_FEE_PERCENT
     uint roundEarnings = PRICE_TO_MINE * PLANET_CAPACITY;
     uint ownerFee = percentOfValue(OWNER_FEE_PERCENT, roundEarnings);
+    ownerHoldings = ownerHoldings.add(ownerFee);
     roundEarnings = roundEarnings.sub(ownerFee);
     // Then go through each miner
-    address[] memory recipients = getRandomisedMinerList();
     for (uint i = 0; i < PLANET_CAPACITY; i++) {
       uint rewardAmount = percentOfValue(50, roundEarnings);
       if (i < PLANET_CAPACITY - 1) {
-        giveMinerReward(recipients[i], rewardAmount);
+        giveMinerReward(miners[i], rewardAmount);
         roundEarnings = roundEarnings.sub(rewardAmount);
       } else {
         // Last miner gets rounding error extra
-        giveMinerReward(recipients[i], roundEarnings);
+        giveMinerReward(miners[i], roundEarnings);
       }
     }
-    planetPopulation = 0;
+    miners.length = 0;
+  }
+
+  function cashOutOwnerFee() public payable onlyOwner {
+    msg.sender.transfer(ownerHoldings);
+    ownerHoldings = 0;
   }
 
   function() external payable {}

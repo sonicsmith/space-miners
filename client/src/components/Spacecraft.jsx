@@ -37,10 +37,7 @@ class Spacecraft extends Component {
         } else {
           position.x += xAmount
           rotation.z += 0.002
-          // to center
-          position.x -= 0.02
         }
-
         position.y -= yAmount
         position.z -= 0.035
         scale.x -= 0.001
