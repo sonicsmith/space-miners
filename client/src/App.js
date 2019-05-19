@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import SpaceMinersContract from "./contracts/SpaceMiners.json"
-import KeriumContract from "./contracts/Kerium.json"
 import getWeb3 from "./utils/getWeb3"
 import Background from "./components/Background.jsx"
 import HUD from "./components/HUD"
@@ -40,14 +39,7 @@ class App extends Component {
         spaceMinersNetwork && spaceMinersNetwork.address
       )
 
-      const keriumNetwork = KeriumContract.networks[networkId]
-      const keriumInstance = new web3.eth.Contract(
-        KeriumContract.abi,
-        keriumNetwork && keriumNetwork.address
-      )
-
       console.log("spaceMinersInstance", spaceMinersInstance)
-      console.log("keriumInstance", keriumInstance)
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -55,8 +47,7 @@ class App extends Component {
         {
           web3,
           accounts,
-          contract: spaceMinersInstance,
-          token: keriumInstance
+          contract: spaceMinersInstance
         },
         this.refresh
       )
@@ -75,9 +66,9 @@ class App extends Component {
     if (contract) {
       const { methods } = contract
       const keriumClaimed = await methods.balanceOf(accounts[0]).call()
-      const priceToMine = await methods.getPriceToMine().call()
-      const planetCapacity = await methods.getPlanetCapacity().call()
-      const planetPopulation = await methods.getPlanetPopulation().call()
+      const priceToMine = await methods.PRICE_TO_MINE().call()
+      const planetCapacity = await methods.PLANET_CAPACITY().call()
+      const planetPopulation = await methods.planetPopulation().call()
       const usersMinersOnPlanet = await methods
         .getNumUsersMinersOnPlanet()
         .call()

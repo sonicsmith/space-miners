@@ -45,6 +45,7 @@ class Spacecraft extends Component {
         scale.z -= 0.001
         if (position.z > 10) {
           Tick(() => {})
+          this.tick = undefined
           this.props.arrived(this.props.craftId)
         }
         this.setState({ position, rotation, scale })

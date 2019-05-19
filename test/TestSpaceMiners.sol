@@ -14,34 +14,34 @@ contract TestSpaceMiners {
   }
 
   function testItStartsFresh() public {
-    uint planetPopulation = spaceMiners.getPlanetPopulation();
+    uint planetPopulation = spaceMiners.planetPopulation();
     Assert.equal(planetPopulation, 0, "Starts with 0 population");
   }
 
   function testItAllowsOneMiner() public {
-    uint planetCapacity = spaceMiners.getPlanetCapacity();
-    uint cost = spaceMiners.getPriceToMine();
+    uint planetCapacity = spaceMiners.PLANET_CAPACITY();
+    uint cost = spaceMiners.PRICE_TO_MINE();
     uint numMiners = planetCapacity - 3;
     spaceMiners.sendMinersToPlanet.value(cost * numMiners)(numMiners);
-    uint planetPopulation = spaceMiners.getPlanetPopulation();
+    uint planetPopulation = spaceMiners.planetPopulation();
     Assert.equal(planetPopulation, numMiners, "Mining increases population");
   }
 
   function testItEndsGameOnceFull() public {
-    uint cost = spaceMiners.getPriceToMine();
+    uint cost = spaceMiners.PRICE_TO_MINE();
     uint numMiners = 3;
     spaceMiners.sendMinersToPlanet.value(cost * numMiners)(numMiners);
-    uint planetPopulation = spaceMiners.getPlanetPopulation();
+    uint planetPopulation = spaceMiners.planetPopulation();
     Assert.equal(planetPopulation, 0, "Mining to capacity clears population");
     uint keriumAmount = spaceMiners.balanceOf(address(this));
-    uint planetCapacity = spaceMiners.getPlanetCapacity();
-    uint expectedAmount = (95 * cost * planetCapacity) / 100;
+    uint planetCapacity = spaceMiners.PLANET_CAPACITY();
+    uint expectedAmount = ((95 * cost * planetCapacity) / 100) + 10;
     Assert.equal(keriumAmount, expectedAmount, "It gives out the right amount of Kerium");
   }
 
   function testOnePlayerCanSendOverCapacity() public {
-    uint cost = spaceMiners.getPriceToMine();
-    uint planetCapacity = spaceMiners.getPlanetCapacity();
+    uint cost = spaceMiners.PRICE_TO_MINE();
+    uint planetCapacity = spaceMiners.PLANET_CAPACITY();
     uint numMiners = planetCapacity * 2;
     spaceMiners.sendMinersToPlanet.value(cost * numMiners)(numMiners);
   }
