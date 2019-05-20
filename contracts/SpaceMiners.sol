@@ -5,12 +5,9 @@ import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 // TOKEN
-import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
-import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
-import "openzeppelin-solidity/contracts/token/ERC20/ERC20Burnable.sol";
-import "openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol";
+import "./ContinuousToken.sol";
 
-contract SpaceMiners is Ownable, ERC20, ERC20Detailed, ERC20Burnable, ERC20Mintable {
+contract SpaceMiners is Ownable, ContinuousToken {
 
   using SafeMath for uint;
 
@@ -21,14 +18,9 @@ contract SpaceMiners is Ownable, ERC20, ERC20Detailed, ERC20Burnable, ERC20Minta
   address[] miners = new address[](PLANET_CAPACITY);
   uint public planetPopulation = 0;
 
-  constructor()
-    ERC20Detailed("Kerium", "KRM", 18)
-    ERC20()
-    ERC20Burnable()
-    ERC20Mintable()
-  public {
-   
-  }
+  string public constant name = "Kerium Crystals";
+  string public constant symbol = "KMC";
+  uint8 public constant decimals = 18;
 
   function getNumUsersMinersOnPlanet() public view returns (uint) {
     uint count = 0;
@@ -41,7 +33,6 @@ contract SpaceMiners is Ownable, ERC20, ERC20Detailed, ERC20Burnable, ERC20Minta
   }
 
   function sendSingleMinerToPlanet(address miner) internal {
-    // Place new miner randomly into list
     miners[planetPopulation] = miner;
     planetPopulation = planetPopulation.add(1);
     if (planetPopulation == PLANET_CAPACITY) {
@@ -63,11 +54,6 @@ contract SpaceMiners is Ownable, ERC20, ERC20Detailed, ERC20Burnable, ERC20Minta
     return (value.mul(percent)).div(100);
   }
 
-  function getEthToTokenRatio() pure public returns (uint) {
-    // TODO: Get price from Bancor algo
-    return 1;
-  }
-
   function getRandom(uint cap) view internal returns (uint) {
     return uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty))) % cap;
   }
@@ -77,12 +63,11 @@ contract SpaceMiners is Ownable, ERC20, ERC20Detailed, ERC20Burnable, ERC20Minta
     uint roundEarnings = PRICE_TO_MINE * PLANET_CAPACITY;
     uint ownerFee = percentOfValue(OWNER_FEE_PERCENT, roundEarnings);
     roundEarnings = roundEarnings.sub(ownerFee);
-    uint ratio = getEthToTokenRatio();
-    uint rewardAmount = roundEarnings.div(NUM_WINNERS);
-    uint tokenAmount = rewardAmount.mul(ratio);
+    uint totalTokens = calculateContinuousMintReturn(roundEarnings);
+    uint rewardAmount = totalTokens.div(NUM_WINNERS);
     for (uint i = 0; i < NUM_WINNERS; i++) {
       uint rnd = getRandom(PLANET_CAPACITY);
-      mint(miners[rnd], tokenAmount);
+      mint(miners[rnd], rewardAmount);
     }
   }
 
