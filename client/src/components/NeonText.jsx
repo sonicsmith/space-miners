@@ -11,7 +11,7 @@ class NeonText extends Component {
         <div
           style={{
             textAlign,
-            fontSize: "2em",
+            fontSize: "5vh",
             padding: "8px 8px 0px 8px"
           }}
           onClick={onClick && onClick}
@@ -21,7 +21,7 @@ class NeonText extends Component {
         <div
           style={{
             textAlign,
-            fontSize: "1.3em",
+            fontSize: "3vh",
             padding: "5px 8px 8px 8px"
           }}
           onClick={onClick && onClick}

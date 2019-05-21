@@ -8,12 +8,12 @@ class Header extends Component {
         style={{
           position: "absolute",
           left: "1%",
-          top: "4%",
+          top: "3%",
           width: "98%",
           zIndex: 1000,
           display: "flex",
           flexDirection: "row",
-          flexWrap: "nowrap",
+          flexWrap: "wrap",
           justifyContent: "space-between"
         }}
       >

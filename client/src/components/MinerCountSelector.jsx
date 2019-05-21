@@ -23,7 +23,7 @@ class MinerCountSelector extends Component {
   render() {
     const { numMinersToSend } = this.props
     return (
-      <div className="neon" style={{ fontSize: "2em", textAlign: "right" }}>
+      <div className="neon" style={{ fontSize: "5vh", textAlign: "right" }}>
         <div>
           {this.minerButton(-1)}
           <span style={{ marginRight: 24, marginLeft: 24 }}>
