@@ -35,7 +35,7 @@ contract TestSpaceMiners {
     Assert.equal(planetPopulation, 0, "Mining to capacity clears population");
     uint keriumAmount = spaceMiners.balanceOf(address(this));
     uint planetCapacity = spaceMiners.PLANET_CAPACITY();
-    uint expectedAmount = ((95 * cost * planetCapacity) / 100) + 10;
+    uint expectedAmount = 1000472653; // TODO
     Assert.equal(keriumAmount, expectedAmount, "It gives out the right amount of Kerium");
   }
 

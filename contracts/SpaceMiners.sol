@@ -22,10 +22,10 @@ contract SpaceMiners is Ownable, ContinuousToken {
   string public constant symbol = "KMC";
   uint8 public constant decimals = 18;
 
-  function getNumUsersMinersOnPlanet() public view returns (uint) {
+  function getNumUsersMinersOnPlanet(address miner) public view returns (uint) {
     uint count = 0;
     for (uint i = 0; i < planetPopulation; i++) {
-      if (miners[i] == msg.sender) {
+      if (miners[i] == miner) {
         count++;
       }
     }
@@ -63,8 +63,7 @@ contract SpaceMiners is Ownable, ContinuousToken {
     uint roundEarnings = PRICE_TO_MINE * PLANET_CAPACITY;
     uint ownerFee = percentOfValue(OWNER_FEE_PERCENT, roundEarnings);
     roundEarnings = roundEarnings.sub(ownerFee);
-    uint totalTokens = calculateContinuousMintReturn(roundEarnings);
-    uint rewardAmount = totalTokens.div(NUM_WINNERS);
+    uint rewardAmount = roundEarnings.div(NUM_WINNERS);
     for (uint i = 0; i < NUM_WINNERS; i++) {
       uint rnd = getRandom(PLANET_CAPACITY);
       mint(miners[rnd], rewardAmount);

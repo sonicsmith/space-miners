@@ -23,9 +23,9 @@ contract ContinuousToken is BancorBondingCurve, Ownable, ERC20 {
         _continuousMint(reciever, value);
     }
 
-    function burn(address payable sender, uint value) public {
-        uint256 returnAmount = _continuousBurn(sender, value);
-        sender.transfer(returnAmount);
+    function burn(uint256 _amount) public {
+        uint256 returnAmount = _continuousBurn(_amount);
+        msg.sender.transfer(returnAmount);
     }
 
     function calculateContinuousMintReturn(uint256 _amount)
@@ -51,15 +51,15 @@ contract ContinuousToken is BancorBondingCurve, Ownable, ERC20 {
         return amount;
     }
 
-    function _continuousBurn(address sender, uint256 _amount)
+    function _continuousBurn(uint256 _amount)
         internal returns (uint256)
     {
         require(_amount > 0, "Amount must be non-zero.");
-        require(balanceOf(sender) >= _amount, "Insufficient tokens to burn.");
+        require(balanceOf(msg.sender) >= _amount, "Insufficient tokens to burn.");
 
         uint256 reimburseAmount = calculateContinuousBurnReturn(_amount);
         reserveBalance = reserveBalance.sub(reimburseAmount);
-        _burn(sender, _amount);
+        _burn(msg.sender, _amount);
         return reimburseAmount;
     }
 }

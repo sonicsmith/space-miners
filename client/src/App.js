@@ -16,6 +16,7 @@ class App extends Component {
     priceToMine: null,
     planetCapacity: null,
     planetPopulation: null,
+    amountInEth: null,
     numMinersToSend: 1,
     numMinersInFlight: 0,
     usersMinersOnPlanet: 0,
@@ -41,6 +42,13 @@ class App extends Component {
 
       console.log("spaceMinersInstance", spaceMinersInstance)
 
+      window.ethereum.on("accountsChanged", newAccounts => {
+        this.setState({
+          accounts: newAccounts
+        })
+        this.refresh()
+      })
+
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState(
@@ -62,22 +70,26 @@ class App extends Component {
 
   refresh = async () => {
     console.log("refresh")
-    const { contract, accounts } = this.state
+    const { contract, accounts, web3 } = this.state
     if (contract) {
       const { methods } = contract
-      const keriumClaimed = await methods.balanceOf(accounts[0]).call()
+      const keriumHoldings = await methods.balanceOf(accounts[0]).call()
       const priceToMine = await methods.PRICE_TO_MINE().call()
       const planetCapacity = await methods.PLANET_CAPACITY().call()
       const planetPopulation = await methods.planetPopulation().call()
+      const amountInEth = await methods
+        .calculateContinuousBurnReturn(keriumHoldings)
+        .call()
       const usersMinersOnPlanet = await methods
-        .getNumUsersMinersOnPlanet()
+        .getNumUsersMinersOnPlanet(accounts[0])
         .call()
       this.setState({
         priceToMine,
         planetCapacity,
         planetPopulation,
+        amountInEth,
         usersMinersOnPlanet,
-        keriumClaimed
+        keriumHoldings
       })
     }
     setTimeout(this.refresh, 5000)
@@ -101,6 +113,27 @@ class App extends Component {
     }
   }
 
+  sellKerium = () => {
+    const { accounts, contract, keriumHoldings } = this.state
+    if (contract) {
+      const { methods } = contract
+      const from = accounts[0]
+      methods
+        .burn(keriumHoldings)
+        .send({ from, value: 0, gas: 300000 })
+        .then(() => {
+          alert("All Crystals have been sold")
+        })
+        .catch(e => {
+          alert("Error, please try again.")
+        })
+    }
+  }
+
+  convertFromWeiUints = amount => {
+    return this.state.web3.utils.fromWei(amount, "ether")
+  }
+
   render() {
     const {
       web3,
@@ -108,8 +141,9 @@ class App extends Component {
       priceToMine,
       planetCapacity,
       planetPopulation,
+      amountInEth,
       usersMinersOnPlanet,
-      keriumClaimed,
+      keriumHoldings,
       numMinersInFlight
     } = this.state
 
@@ -129,7 +163,8 @@ class App extends Component {
       planetCapacity &&
       planetPopulation &&
       usersMinersOnPlanet &&
-      keriumClaimed
+      keriumHoldings &&
+      amountInEth
 
     return (
       <div>
@@ -144,13 +179,16 @@ class App extends Component {
           )}
           {gotData ? (
             <HUD
-              completion={(planetPopulation / planetCapacity) * 100}
-              keriumClaimed={keriumClaimed}
+              planetPopulation={planetPopulation}
+              planetCapacity={planetCapacity}
+              keriumHoldings={this.convertFromWeiUints(keriumHoldings)}
               usersMinersOnPlanet={usersMinersOnPlanet}
               costToSend={costToSend}
               numMinersToSend={numMinersToSend}
+              amountInEth={this.convertFromWeiUints(amountInEth)}
               setMinersToSend={num => this.setState({ numMinersToSend: num })}
               sendMinersToPlanet={this.sendMinersToPlanet}
+              sellKerium={this.sellKerium}
             />
           ) : (
             <h1>LOADING</h1>
