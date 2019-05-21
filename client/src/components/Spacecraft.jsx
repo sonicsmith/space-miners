@@ -12,13 +12,12 @@ class Spacecraft extends Component {
       width: 0,
       height: 0,
       position: { x: this.randomX, y: 1, z: 0 },
-      rotation: { x: 0, y: -1, z: this.randomX * 0.7 },
+      rotation: { x: 0, y: -1, z: this.randomX * 0.6 },
       scale: { x: 1, y: 1, z: 1 }
     }
   }
 
   componentWillMount() {
-    console.log(window.innerWidth)
     this.setState({
       width: window.innerWidth * 0.8,
       height: window.innerHeight * 0.8
@@ -43,12 +42,11 @@ class Spacecraft extends Component {
         scale.x -= 0.001
         scale.y -= 0.001
         scale.z -= 0.001
-        if (position.z > 10) {
-          Tick(() => {})
-          this.tick = undefined
-          this.props.arrived(this.props.craftId)
-        }
         this.setState({ position, rotation, scale })
+        if (position.z < -20) {
+          this.props.arrived(this.props.craftId)
+          this.tick.animate = false
+        }
       })
     }, (this.props.craftId + 1) * 1000)
   }
