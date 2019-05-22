@@ -43,7 +43,7 @@ contract SpaceMiners is Ownable, ContinuousToken {
   }
 
   function sendMinersToPlanet(uint numMiners) public payable {
-    require(msg.value >= numMiners * PRICE_TO_MINE, "Not enough paid for mining");
+    require(msg.value >= numMiners * PRICE_TO_MINE, "Not enough paid");
     require(planetPopulation < PLANET_CAPACITY, "Planet is full");
     mint(msg.sender, numMiners);
     for (uint i = 0; i < numMiners; i++) {

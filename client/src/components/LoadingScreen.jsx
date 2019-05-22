@@ -23,7 +23,20 @@ class LoadingScreen extends Component {
             <NeonText title={"Don't have a web3 provider?"} />
           </div>
           <div>
-            <NeonText title={"Download one today"} />
+            <NeonText title={"We recommend Metamask"} />
+          </div>
+          <div>
+            <a
+              style={{
+                color: "white",
+                fontSize: "1.5vw",
+                fontFamily: "Audiowide",
+                margin: 10
+              }}
+              href={"https://metamask.io/"}
+            >
+              DOWNLOAD NOW
+            </a>
           </div>
         </div>
       </Background>
