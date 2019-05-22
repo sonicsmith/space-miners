@@ -17,6 +17,7 @@ contract SpaceMiners is Ownable, ContinuousToken {
   uint OWNER_FEE_PERCENT = 5;
   address[] miners = new address[](PLANET_CAPACITY);
   uint public planetPopulation = 0;
+  uint ownerHoldings = 1;
 
   string public constant name = "Kerium Crystals";
   string public constant symbol = "KMC";
@@ -62,6 +63,7 @@ contract SpaceMiners is Ownable, ContinuousToken {
     // First take OWNER_FEE_PERCENT
     uint roundEarnings = PRICE_TO_MINE * PLANET_CAPACITY;
     uint ownerFee = percentOfValue(OWNER_FEE_PERCENT, roundEarnings);
+    ownerHoldings = ownerHoldings.add(ownerFee);
     roundEarnings = roundEarnings.sub(ownerFee);
     uint rewardAmount = roundEarnings.div(NUM_WINNERS);
     for (uint i = 0; i < NUM_WINNERS; i++) {
@@ -71,8 +73,9 @@ contract SpaceMiners is Ownable, ContinuousToken {
   }
 
   function cashOutOwnerFee() public payable onlyOwner {
-    uint ownerHoldings = address(this).balance - (planetPopulation * PRICE_TO_MINE);
-    msg.sender.transfer(ownerHoldings);
+    require(ownerHoldings > 1);
+    msg.sender.transfer(ownerHoldings - 1);
+    ownerHoldings = 1;
   }
 
   function() external payable {}

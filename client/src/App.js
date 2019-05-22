@@ -1,9 +1,11 @@
 import React, { Component } from "react"
 import SpaceMinersContract from "./contracts/SpaceMiners.json"
 import getWeb3 from "./utils/getWeb3"
+import IndexScreen from "./components/IndexScreen.jsx"
+import Instructions from "./components/Instructions.jsx"
 import Background from "./components/Background.jsx"
 import HUD from "./components/HUD"
-
+import LoadingScreen from "./components/LoadingScreen.jsx"
 import SpacecraftLauncher from "./components/SpacecraftLauncher.jsx"
 
 class App extends Component {
@@ -24,23 +26,17 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    console.log("componentDidMount")
     try {
-      // Get network provider and web3 instance.
       const web3 = await getWeb3()
-      console.log("web3", web3)
-      // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts()
-      console.log("accounts", accounts)
       const networkId = await web3.eth.net.getId()
-      // Get Contract Instance
-      const spaceMinersNetwork = SpaceMinersContract.networks[networkId]
-      const spaceMinersInstance = new web3.eth.Contract(
+      const network = SpaceMinersContract.networks[networkId]
+      const contract = new web3.eth.Contract(
         SpaceMinersContract.abi,
-        spaceMinersNetwork && spaceMinersNetwork.address
+        network && network.address
       )
 
-      console.log("spaceMinersInstance", spaceMinersInstance)
+      console.log("Successfully connected to web3")
 
       window.ethereum.on("accountsChanged", newAccounts => {
         this.setState({
@@ -48,14 +44,11 @@ class App extends Component {
         })
         this.refresh()
       })
-
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
       this.setState(
         {
           web3,
           accounts,
-          contract: spaceMinersInstance
+          contract
         },
         this.refresh
       )
@@ -69,8 +62,7 @@ class App extends Component {
   }
 
   refresh = async () => {
-    console.log("refresh")
-    const { contract, accounts, web3 } = this.state
+    const { contract, accounts } = this.state
     if (contract) {
       const { methods } = contract
       const keriumHoldings = await methods.balanceOf(accounts[0]).call()
@@ -148,7 +140,7 @@ class App extends Component {
     } = this.state
 
     if (!web3) {
-      return <div>Loading Web3, accounts, and contract...</div>
+      return <LoadingScreen />
     }
 
     const costToSend = web3.utils.fromWei(
@@ -177,7 +169,7 @@ class App extends Component {
               }}
             />
           )}
-          {gotData ? (
+          {gotData && (
             <HUD
               planetPopulation={planetPopulation}
               planetCapacity={planetCapacity}
@@ -190,8 +182,6 @@ class App extends Component {
               sendMinersToPlanet={this.sendMinersToPlanet}
               sellKerium={this.sellKerium}
             />
-          ) : (
-            <h1>LOADING</h1>
           )}
         </Background>
       </div>

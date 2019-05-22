@@ -8722,10 +8722,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3637,
-                        3638
+                        3647,
+                        3648
                       ],
-                      "referencedDeclaration": 3638,
+                      "referencedDeclaration": 3648,
                       "src": "11350:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -8833,10 +8833,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3637,
-                        3638
+                        3647,
+                        3648
                       ],
-                      "referencedDeclaration": 3638,
+                      "referencedDeclaration": 3648,
                       "src": "11410:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -12635,7 +12635,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3623,
+                      "referencedDeclaration": 3633,
                       "src": "14238:6:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -38780,10 +38780,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3637,
-                        3638
+                        3647,
+                        3648
                       ],
-                      "referencedDeclaration": 3638,
+                      "referencedDeclaration": 3648,
                       "src": "11350:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -38891,10 +38891,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3637,
-                        3638
+                        3647,
+                        3648
                       ],
-                      "referencedDeclaration": 3638,
+                      "referencedDeclaration": 3648,
                       "src": "11410:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -42693,7 +42693,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3623,
+                      "referencedDeclaration": 3633,
                       "src": "14238:6:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -60151,7 +60151,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-21T02:59:53.962Z",
+  "updatedAt": "2019-05-22T03:12:45.396Z",
   "devdoc": {
     "details": "https://github.com/bancorprotocol/contracts\r  * Modified from the original by Slava Balasanov & Tarrence van As\r  * Split Power.sol out from BancorFormula.sol\r https://github.com/bancorprotocol/contracts/blob/c9adc95e82fdfb3a0ada102514beb8ae00147f5d/solidity/contracts/converter/BancorFormula.sol\r  * Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements;\r and to You under the Apache License, Version 2.0. \"\r",
     "methods": {},
