@@ -24,8 +24,7 @@ module.exports = {
           "https://ropsten.infura.io/v3/" + infuraProjectId
         )
       },
-      network_id: 3,
-      gas: 4000000
+      network_id: 3
     },
     live: {
       provider: function() {
@@ -34,8 +33,7 @@ module.exports = {
           "https://mainnet.infura.io/v3/" + infuraProjectId
         )
       },
-      network_id: 1,
-      gas: 4000000
+      network_id: 1
     }
   }
 }

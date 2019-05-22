@@ -613,11 +613,11 @@
           }
         ],
         "contractDependencies": [
-          208,
-          2645,
           3177,
           3560,
-          3629
+          3629,
+          208,
+          2645
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -3305,11 +3305,11 @@
           }
         ],
         "contractDependencies": [
-          208,
-          2645,
           3177,
           3560,
-          3629
+          3629,
+          208,
+          2645
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -5880,7 +5880,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-22T03:12:45.371Z",
+  "updatedAt": "2019-05-22T04:41:39.762Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {

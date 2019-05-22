@@ -1,8 +1,6 @@
 import React, { Component } from "react"
 import SpaceMinersContract from "./contracts/SpaceMiners.json"
 import getWeb3 from "./utils/getWeb3"
-import IndexScreen from "./components/IndexScreen.jsx"
-import Instructions from "./components/Instructions.jsx"
 import Background from "./components/Background.jsx"
 import HUD from "./components/HUD"
 import LoadingScreen from "./components/LoadingScreen.jsx"

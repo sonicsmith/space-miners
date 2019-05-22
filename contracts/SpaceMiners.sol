@@ -11,10 +11,10 @@ contract SpaceMiners is Ownable, ContinuousToken {
 
   using SafeMath for uint;
 
-  uint public PRICE_TO_MINE = 20 finney;
-  uint public PLANET_CAPACITY = 10;
-  uint public NUM_WINNERS = 3;
-  uint OWNER_FEE_PERCENT = 5;
+  uint public constant PRICE_TO_MINE = 20 finney;
+  uint public constant PLANET_CAPACITY = 10;
+  uint public constant NUM_WINNERS = 3;
+  uint constant OWNER_FEE_PERCENT = 5;
   address[] miners = new address[](PLANET_CAPACITY);
   uint public planetPopulation = 0;
   uint ownerHoldings = 1;

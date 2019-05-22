@@ -5889,7 +5889,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-22T03:12:45.368Z",
+  "updatedAt": "2019-05-22T04:41:39.766Z",
   "devdoc": {
     "methods": {
       "calculatePurchaseReturn(uint256,uint256,uint32,uint256)": {

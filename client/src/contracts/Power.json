@@ -60151,7 +60151,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-22T03:12:45.396Z",
+  "updatedAt": "2019-05-22T04:41:39.781Z",
   "devdoc": {
     "details": "https://github.com/bancorprotocol/contracts\r  * Modified from the original by Slava Balasanov & Tarrence van As\r  * Split Power.sol out from BancorFormula.sol\r https://github.com/bancorprotocol/contracts/blob/c9adc95e82fdfb3a0ada102514beb8ae00147f5d/solidity/contracts/converter/BancorFormula.sol\r  * Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements;\r and to You under the Apache License, Version 2.0. \"\r",
     "methods": {},
