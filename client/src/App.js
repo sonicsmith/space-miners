@@ -6,6 +6,11 @@ import HUD from "./components/HUD"
 import LoadingScreen from "./components/LoadingScreen.jsx"
 import SpacecraftLauncher from "./components/SpacecraftLauncher.jsx"
 
+const CONTRACT_ADDRESSES = {
+  1: "0x7945C93926BDDCF450a450cC1Fc1ABe7184e6e2D",
+  3: "0x4be86c75faeec10c329d6a00a11519b775976a89"
+}
+
 class App extends Component {
   state = {
     web3: null,
@@ -29,9 +34,10 @@ class App extends Component {
       const accounts = await web3.eth.getAccounts()
       const networkId = await web3.eth.net.getId()
       const network = SpaceMinersContract.networks[networkId]
+      const contractAddress = CONTRACT_ADDRESSES[networkId]
       const contract = new web3.eth.Contract(
         SpaceMinersContract.abi,
-        network && network.address
+        contractAddress || (network && network.address)
       )
 
       console.log("Successfully connected to web3")
