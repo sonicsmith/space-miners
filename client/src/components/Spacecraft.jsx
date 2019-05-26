@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import { Tick, GLTFModel, AmbientLight } from "react-3d-viewer"
+
+import { Tick, GLTFModel, AmbientLight } from "./../3d/main"
 
 const path = "./minerModel/"
 const modelName = "minerDrone.gltf"

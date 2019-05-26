@@ -23,7 +23,7 @@ class App extends Component {
     planetPopulation: null,
     amountInEth: null,
     numMinersToSend: 1,
-    numMinersInFlight: 0,
+    numMinersInFlight: 1,
     usersMinersOnPlanet: 0,
     keriumReserves: 0,
     //
@@ -99,7 +99,7 @@ class App extends Component {
       const { methods } = contract
       const from = accounts[0]
       const value = numMinersToSend * priceToMine
-      this.setState({ processingTransaction: "Charging mining vehicles..." })
+      this.setState({ processingTransaction: "Preparing mining vehicles..." })
       methods
         .sendMinersToPlanet(numMinersToSend)
         .send({ from, value, gas: 300000 })
