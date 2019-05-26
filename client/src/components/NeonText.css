@@ -33,6 +33,16 @@
   cursor: pointer;
 }
 
+.flashing-text {
+  animation: flashing 1s linear infinite;
+}
+
+@keyframes flashing {
+  50% {
+    opacity: 0;
+  }
+}
+
 /* @keyframes neon1 {
   from {
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,

@@ -4,7 +4,7 @@ import "./NeonText.css"
 
 class NeonText extends Component {
   render() {
-    const { title, subtitle, textAlign, onClick } = this.props
+    const { title, subtitle, textAlign, onClick, flashing } = this.props
 
     return (
       <div className={`${onClick ? "neonButton" : "neon"}`}>
@@ -19,6 +19,7 @@ class NeonText extends Component {
           {title}
         </div>
         <div
+          className={`${flashing ? " flashing-text" : ""}`}
           style={{
             textAlign,
             fontSize: "3vh",

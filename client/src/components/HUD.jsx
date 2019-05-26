@@ -15,9 +15,16 @@ class HUD extends Component {
       amountInEth,
       setMinersToSend,
       sendMinersToPlanet,
-      sellKerium
+      sellKerium,
+      processingTransaction
     } = this.props
-
+    let status = processingTransaction
+    if (!processingTransaction) {
+      status =
+        usersMinersOnPlanet > 0
+          ? `${usersMinersOnPlanet} craft mining`
+          : "ready"
+    }
     return (
       <Header>
         <div>
@@ -27,13 +34,10 @@ class HUD extends Component {
             textAlign={"left"}
           />
           <NeonText
-            title={"MINING STATUS"}
-            subtitle={
-              usersMinersOnPlanet > 0
-                ? `${usersMinersOnPlanet} craft mining`
-                : "ready"
-            }
+            title={"STATUS"}
+            subtitle={status}
             textAlign={"left"}
+            flashing={processingTransaction}
           />
           <NeonText
             title={"AMOUNT MINED"}

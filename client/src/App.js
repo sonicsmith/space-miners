@@ -25,7 +25,9 @@ class App extends Component {
     numMinersToSend: 1,
     numMinersInFlight: 0,
     usersMinersOnPlanet: 0,
-    keriumReserves: 0
+    keriumReserves: 0,
+    //
+    processingTransaction: false
   }
 
   componentDidMount = async () => {
@@ -97,13 +99,16 @@ class App extends Component {
       const { methods } = contract
       const from = accounts[0]
       const value = numMinersToSend * priceToMine
+      this.setState({ processingTransaction: "Charging mining vehicles..." })
       methods
         .sendMinersToPlanet(numMinersToSend)
         .send({ from, value, gas: 300000 })
         .then(() => {
+          this.setState({ processingTransaction: false })
           this.setState({ numMinersInFlight: Math.min(5, numMinersToSend) })
         })
         .catch(e => {
+          this.setState({ processingTransaction: false })
           alert("Error, please try again.")
         })
     }
@@ -114,13 +119,18 @@ class App extends Component {
     if (contract) {
       const { methods } = contract
       const from = accounts[0]
+      this.setState({
+        processingTransaction: "Attempting to trade crystals for Ether..."
+      })
       methods
         .burn(keriumHoldings)
         .send({ from, value: 0, gas: 300000 })
         .then(() => {
+          this.setState({ processingTransaction: false })
           alert("All Crystals have been sold")
         })
         .catch(e => {
+          this.setState({ processingTransaction: false })
           alert("Error, please try again.")
         })
     }
@@ -140,7 +150,8 @@ class App extends Component {
       amountInEth,
       usersMinersOnPlanet,
       keriumHoldings,
-      numMinersInFlight
+      numMinersInFlight,
+      processingTransaction
     } = this.state
 
     if (!web3) {
@@ -185,6 +196,7 @@ class App extends Component {
               setMinersToSend={num => this.setState({ numMinersToSend: num })}
               sendMinersToPlanet={this.sendMinersToPlanet}
               sellKerium={this.sellKerium}
+              processingTransaction={processingTransaction}
             />
           )}
         </Background>
