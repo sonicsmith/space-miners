@@ -23,7 +23,7 @@ class App extends Component {
     planetPopulation: null,
     amountInEth: null,
     numMinersToSend: 1,
-    numMinersInFlight: 1,
+    numMinersInFlight: 0,
     usersMinersOnPlanet: 0,
     keriumReserves: 0,
     //

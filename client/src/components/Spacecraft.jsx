@@ -20,8 +20,8 @@ class Spacecraft extends Component {
 
   componentWillMount() {
     this.setState({
-      width: window.innerWidth * 0.8,
-      height: window.innerHeight * 0.8
+      width: window.innerWidth, // * 0.8,
+      height: window.innerHeight // * 0.8
     })
   }
 
@@ -60,7 +60,7 @@ class Spacecraft extends Component {
       <div
         style={{
           position: "absolute",
-          left: "10%",
+          // left: "10%",
           zIndex: 1,
           opacity: spacecraftFade
         }}
