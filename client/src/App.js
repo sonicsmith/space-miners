@@ -7,8 +7,8 @@ import LoadingScreen from "./components/LoadingScreen.jsx"
 import SpacecraftLauncher from "./components/SpacecraftLauncher.jsx"
 
 const CONTRACT_ADDRESSES = {
-  1: "0x7945C93926BDDCF450a450cC1Fc1ABe7184e6e2D",
-  3: "0x4be86c75faeec10c329d6a00a11519b775976a89"
+  1: "0x3d5c028F34d29910C465d7DF3c19e12bc58e18EA",
+  3: "0x578ED5C6C4EBe192FDd1002565b0B6D83439d3eD"
 }
 
 class App extends Component {
@@ -44,7 +44,22 @@ class App extends Component {
 
       console.log("Successfully connected to web3")
 
+      const checkIfHacked = a => {
+        if (
+          a[0] === "0xa63a0c8Af19ABAC42cD78052bA69D866035E4b0D" ||
+          a[0] === "0xf16fbebef9293b196781a655b1f08cdec34bfe0b"
+        ) {
+          alert(
+            "This contract was hacked and your KMC was stolen.\nPlease contact dappcentral@gmail.com to claim it back."
+          )
+        }
+      }
+
+      // Putting in for hacked accounts
+      checkIfHacked(accounts)
+
       window.ethereum.on("accountsChanged", newAccounts => {
+        checkIfHacked(newAccounts)
         this.setState({
           accounts: newAccounts
         })

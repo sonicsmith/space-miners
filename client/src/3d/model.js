@@ -134,7 +134,6 @@ class Model extends React.Component {
   }
 
   render() {
-    var { lights } = this.state
     return (
       <div
         ref={node => (this.$container = node)}
@@ -169,7 +168,7 @@ class Model extends React.Component {
   componentDidUpdate() {
     if (!this.obj3d) return false
 
-    var { src, background, width, height } = this.props
+    var { src, width, height } = this.props
 
     // console.log(this.props.position);
 
@@ -187,7 +186,7 @@ class Model extends React.Component {
       enabled
     })
 
-    if (typeof this.src != "undefined" && this.src != src) {
+    if (typeof this.src !== "undefined" && this.src !== src) {
       this.src = src
       this.remove3dModel()
       this.load3dModel()
