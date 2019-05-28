@@ -120,7 +120,7 @@ class App extends Component {
       const { methods } = contract
       const from = accounts[0]
       this.setState({
-        processingTransaction: "Attempting to trade crystals for Ether..."
+        processingTransaction: "Trading crystals for Ether..."
       })
       methods
         .burn(keriumHoldings)

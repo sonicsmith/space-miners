@@ -169,6 +169,7 @@ interface IERC20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
+
 // File: openzeppelin-solidity\contracts\token\ERC20\ERC20.sol
 
 pragma solidity ^0.5.2;
@@ -920,7 +921,7 @@ contract ContinuousToken is BancorBondingCurve, Ownable, ERC20 {
         _mint(msg.sender, 1*scale);
     }
 
-    function mint(address reciever, uint value) public payable {
+    function mint(address reciever, uint value) internal {
         require(value > 0, "Must send ether to buy tokens.");
         _continuousMint(reciever, value);
     }
@@ -981,9 +982,9 @@ contract SpaceMiners is Ownable, ContinuousToken {
 
   using SafeMath for uint;
 
-  uint public constant PRICE_TO_MINE = 20 finney;
-  uint public constant PLANET_CAPACITY = 10;
-  uint public constant NUM_WINNERS = 3;
+  uint public PRICE_TO_MINE = 20 finney;
+  uint public PLANET_CAPACITY = 6;
+  uint public NUM_WINNERS = 3;
   uint constant OWNER_FEE_PERCENT = 5;
   address[] miners = new address[](PLANET_CAPACITY);
   uint public planetPopulation = 0;
@@ -992,6 +993,12 @@ contract SpaceMiners is Ownable, ContinuousToken {
   string public constant name = "Kerium Crystals";
   string public constant symbol = "KMC";
   uint8 public constant decimals = 18;
+
+  function setGameSettings(uint priceToMine, uint planetCapacity, uint numWinners) public payable onlyOwner {
+    PRICE_TO_MINE = priceToMine;
+    PLANET_CAPACITY = planetCapacity;
+    NUM_WINNERS = numWinners;
+  }
 
   function getNumUsersMinersOnPlanet(address miner) public view returns (uint) {
     uint count = 0;
@@ -1036,9 +1043,13 @@ contract SpaceMiners is Ownable, ContinuousToken {
     ownerHoldings = ownerHoldings.add(ownerFee);
     roundEarnings = roundEarnings.sub(ownerFee);
     uint rewardAmount = roundEarnings.div(NUM_WINNERS);
-    for (uint i = 0; i < NUM_WINNERS; i++) {
-      uint rnd = getRandom(PLANET_CAPACITY);
-      mint(miners[rnd], rewardAmount);
+    uint rnd = getRandom(PLANET_CAPACITY);
+    for (uint i = rnd; i < rnd + NUM_WINNERS; i++) {
+      if (i >= PLANET_CAPACITY) {
+        mint(miners[i - PLANET_CAPACITY], rewardAmount);
+      } else {
+        mint(miners[i], rewardAmount);
+      }
     }
   }
 
@@ -1048,6 +1059,9 @@ contract SpaceMiners is Ownable, ContinuousToken {
     ownerHoldings = 1;
   }
 
-  function() external payable {}
+  function() external payable {
+    address payable payableAddress = address(uint160(owner()));
+    payableAddress.transfer(msg.value);
+  }
 
 }

@@ -18,7 +18,7 @@ contract ContinuousToken is BancorBondingCurve, Ownable, ERC20 {
         _mint(msg.sender, 1*scale);
     }
 
-    function mint(address reciever, uint value) public payable {
+    function mint(address reciever, uint value) internal {
         require(value > 0, "Must send ether to buy tokens.");
         _continuousMint(reciever, value);
     }
