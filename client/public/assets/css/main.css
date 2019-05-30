@@ -2962,7 +2962,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style3 {
-			background-color: #505393;
+			background-color: #140A22;
 			color: #d3d4e4;
 		}
 
@@ -3016,7 +3016,7 @@ input, select, textarea {
 
 				.wrapper.style3 select option {
 					color: #ffffff;
-					background: #505393;
+					background: #140A22;
 				}
 
 			.wrapper.style3 input[type="checkbox"] + label,
@@ -3032,7 +3032,7 @@ input, select, textarea {
 			.wrapper.style3 input[type="checkbox"]:checked + label:before,
 			.wrapper.style3 input[type="radio"]:checked + label:before {
 				background: #ffffff;
-				color: #505393;
+				color: #140A22;
 			}
 
 			.wrapper.style3 ::-webkit-input-placeholder {

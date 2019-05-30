@@ -43,14 +43,10 @@ class App extends Component {
       )
 
       console.log("Successfully connected to web3")
-
       const checkIfHacked = a => {
-        if (
-          a[0] === "0xa63a0c8Af19ABAC42cD78052bA69D866035E4b0D" ||
-          a[0] === "0xf16fbebef9293b196781a655b1f08cdec34bfe0b"
-        ) {
+        if (a[0] === "0xf16fbebef9293b196781a655b1f08cdec34bfe0b") {
           alert(
-            "This contract was hacked and your KMC was stolen.\nPlease contact dappcentral@gmail.com to claim it back."
+            "This contract was hacked.\nPlease contact dappcentral@gmail.com to recieve a refund."
           )
         }
       }
