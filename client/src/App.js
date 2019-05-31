@@ -110,13 +110,16 @@ class App extends Component {
       const { methods } = contract
       const from = accounts[0]
       const value = numMinersToSend * priceToMine
-      this.setState({ processingTransaction: "Preparing mining vehicles..." })
+      this.setState({
+        processingTransaction: "Sending mining vehicles..."
+      })
       methods
         .sendMinersToPlanet(numMinersToSend)
-        .send({ from, value, gas: 300000 })
+        .send({ from, value, gas: 300000 }, () => {
+          this.setState({ numMinersInFlight: Math.min(5, numMinersToSend) })
+        })
         .then(() => {
           this.setState({ processingTransaction: false })
-          this.setState({ numMinersInFlight: Math.min(5, numMinersToSend) })
         })
         .catch(e => {
           this.setState({ processingTransaction: false })
