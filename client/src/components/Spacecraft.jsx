@@ -25,7 +25,7 @@ class Spacecraft extends Component {
     })
   }
 
-  componentDidMount() {
+  launchMiner() {
     setTimeout(() => {
       this.tick = Tick(() => {
         const { position, rotation, scale } = this.state
@@ -71,6 +71,9 @@ class Spacecraft extends Component {
           transparent={true}
           background={0x00ffff}
           src={`${path}${modelName}`}
+          onLoad={() => {
+            this.launchMiner()
+          }}
           position={this.state.position}
           rotation={this.state.rotation}
           scale={this.state.scale}
