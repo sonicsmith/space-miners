@@ -36,7 +36,7 @@ class App extends Component {
     try {
       const web3 = await getWeb3()
       const assistInstance = initializeAssist(web3)
-      assistInstance.onboard()
+      await assistInstance.onboard()
       const accounts = await web3.eth.getAccounts()
       const network = SpaceMinersContract.networks[NETWORK_ID]
       const contractAddress = CONTRACT_ADDRESSES[NETWORK_ID]
