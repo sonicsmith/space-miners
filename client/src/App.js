@@ -35,9 +35,10 @@ class App extends Component {
   componentDidMount = async () => {
     try {
       const web3 = await getWeb3()
+      const assistInstance = initializeAssist(web3)
+      assistInstance.onboard()
       const accounts = await web3.eth.getAccounts()
       const network = SpaceMinersContract.networks[NETWORK_ID]
-      const assistInstance = initializeAssist(web3)
       const contractAddress = CONTRACT_ADDRESSES[NETWORK_ID]
       const contract = assistInstance.Contract(
         new web3.eth.Contract(
@@ -69,8 +70,7 @@ class App extends Component {
         {
           web3,
           accounts,
-          contract,
-          assistInstance
+          contract
         },
         this.refresh
       )
@@ -84,34 +84,29 @@ class App extends Component {
   }
 
   refresh = async () => {
-    const { contract, accounts, assistInstance } = this.state
-    try {
-      assistInstance.onboard()
-      if (contract) {
-        const { methods } = contract
-        const keriumHoldings = await methods.balanceOf(accounts[0]).call()
-        const priceToMine = await methods.PRICE_TO_MINE().call()
-        const planetCapacity = await methods.PLANET_CAPACITY().call()
-        const planetPopulation = await methods.planetPopulation().call()
-        const amountInEth = await methods
-          .calculateContinuousBurnReturn(keriumHoldings.toString())
-          .call()
-        const usersMinersOnPlanet = await methods
-          .getNumUsersMinersOnPlanet(accounts[0])
-          .call()
-        this.setState({
-          priceToMine,
-          planetCapacity,
-          planetPopulation,
-          amountInEth,
-          usersMinersOnPlanet,
-          keriumHoldings
-        })
-      }
-      setTimeout(this.refresh, 5000)
-    } catch (error) {
-      console.error(error)
+    const { contract, accounts } = this.state
+    if (contract) {
+      const { methods } = contract
+      const keriumHoldings = await methods.balanceOf(accounts[0]).call()
+      const priceToMine = await methods.PRICE_TO_MINE().call()
+      const planetCapacity = await methods.PLANET_CAPACITY().call()
+      const planetPopulation = await methods.planetPopulation().call()
+      const amountInEth = await methods
+        .calculateContinuousBurnReturn(keriumHoldings.toString())
+        .call()
+      const usersMinersOnPlanet = await methods
+        .getNumUsersMinersOnPlanet(accounts[0])
+        .call()
+      this.setState({
+        priceToMine,
+        planetCapacity,
+        planetPopulation,
+        amountInEth,
+        usersMinersOnPlanet,
+        keriumHoldings
+      })
     }
+    setTimeout(this.refresh, 5000)
   }
 
   sendMinersToPlanet = () => {
