@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import { NETWORK_ID } from "./config"
+import { initializeAssist } from "./utils/assist"
 import SpaceMinersContract from "./contracts/SpaceMiners.json"
 import getWeb3 from "./utils/getWeb3"
 import Background from "./components/Background.jsx"
@@ -34,12 +36,14 @@ class App extends Component {
     try {
       const web3 = await getWeb3()
       const accounts = await web3.eth.getAccounts()
-      const networkId = await web3.eth.net.getId()
-      const network = SpaceMinersContract.networks[networkId]
-      const contractAddress = CONTRACT_ADDRESSES[networkId]
-      const contract = new web3.eth.Contract(
-        SpaceMinersContract.abi,
-        contractAddress || (network && network.address)
+      const network = SpaceMinersContract.networks[NETWORK_ID]
+      const assistInstance = initializeAssist(web3)
+      const contractAddress = CONTRACT_ADDRESSES[NETWORK_ID]
+      const contract = assistInstance.Contract(
+        new web3.eth.Contract(
+          SpaceMinersContract.abi,
+          contractAddress || (network && network.address)
+        )
       )
 
       console.log("Successfully connected to web3")
@@ -65,7 +69,8 @@ class App extends Component {
         {
           web3,
           accounts,
-          contract
+          contract,
+          assistInstance
         },
         this.refresh
       )
@@ -79,29 +84,34 @@ class App extends Component {
   }
 
   refresh = async () => {
-    const { contract, accounts } = this.state
-    if (contract) {
-      const { methods } = contract
-      const keriumHoldings = await methods.balanceOf(accounts[0]).call()
-      const priceToMine = await methods.PRICE_TO_MINE().call()
-      const planetCapacity = await methods.PLANET_CAPACITY().call()
-      const planetPopulation = await methods.planetPopulation().call()
-      const amountInEth = await methods
-        .calculateContinuousBurnReturn(keriumHoldings)
-        .call()
-      const usersMinersOnPlanet = await methods
-        .getNumUsersMinersOnPlanet(accounts[0])
-        .call()
-      this.setState({
-        priceToMine,
-        planetCapacity,
-        planetPopulation,
-        amountInEth,
-        usersMinersOnPlanet,
-        keriumHoldings
-      })
+    const { contract, accounts, assistInstance } = this.state
+    try {
+      assistInstance.onboard()
+      if (contract) {
+        const { methods } = contract
+        const keriumHoldings = await methods.balanceOf(accounts[0]).call()
+        const priceToMine = await methods.PRICE_TO_MINE().call()
+        const planetCapacity = await methods.PLANET_CAPACITY().call()
+        const planetPopulation = await methods.planetPopulation().call()
+        const amountInEth = await methods
+          .calculateContinuousBurnReturn(keriumHoldings.toString())
+          .call()
+        const usersMinersOnPlanet = await methods
+          .getNumUsersMinersOnPlanet(accounts[0])
+          .call()
+        this.setState({
+          priceToMine,
+          planetCapacity,
+          planetPopulation,
+          amountInEth,
+          usersMinersOnPlanet,
+          keriumHoldings
+        })
+      }
+      setTimeout(this.refresh, 5000)
+    } catch (error) {
+      console.error(error)
     }
-    setTimeout(this.refresh, 5000)
   }
 
   sendMinersToPlanet = () => {
@@ -123,7 +133,6 @@ class App extends Component {
         })
         .catch(e => {
           this.setState({ processingTransaction: false })
-          alert("Error, please try again.")
         })
     }
   }
@@ -141,17 +150,15 @@ class App extends Component {
         .send({ from, value: 0, gas: 300000 })
         .then(() => {
           this.setState({ processingTransaction: false })
-          alert("All Crystals have been sold")
         })
         .catch(e => {
           this.setState({ processingTransaction: false })
-          alert("Error, please try again.")
         })
     }
   }
 
   convertFromWeiUints = amount => {
-    return this.state.web3.utils.fromWei(amount, "ether")
+    return this.state.web3.utils.fromWei(amount.toString(), "ether")
   }
 
   render() {
