@@ -5,7 +5,6 @@ import SpaceMinersContract from "./contracts/SpaceMiners.json"
 import getWeb3 from "./utils/getWeb3"
 import Background from "./components/Background.jsx"
 import HUD from "./components/HUD"
-import LoadingScreen from "./components/LoadingScreen.jsx"
 import SpacecraftLauncher from "./components/SpacecraftLauncher.jsx"
 
 const CONTRACT_ADDRESSES = {
@@ -171,7 +170,7 @@ class App extends Component {
     } = this.state
 
     if (!web3) {
-      return <LoadingScreen />
+      return <Background />
     }
 
     const costToSend = web3.utils.fromWei(
