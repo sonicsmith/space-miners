@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { NETWORK_ID } from "./config"
-import { initializeAssist } from "./utils/assist"
+import { initializeAssist, onboardUser } from "./utils/assist"
 import SpaceMinersContract from "./contracts/SpaceMiners.json"
 import getWeb3 from "./utils/getWeb3"
 import Background from "./components/Background.jsx"
@@ -36,7 +36,7 @@ class App extends Component {
     try {
       const web3 = await getWeb3()
       const assistInstance = initializeAssist(web3)
-      await assistInstance.onboard()
+      await onboardUser()
       const accounts = await web3.eth.getAccounts()
       const network = SpaceMinersContract.networks[NETWORK_ID]
       const contractAddress = CONTRACT_ADDRESSES[NETWORK_ID]

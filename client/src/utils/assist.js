@@ -33,7 +33,7 @@ export function getAssist(web3) {
               : 'Putting in a request to sell your Kerium',
           txPending: ({contract}) => 
             contract.methodName === 'sendMinersToPlanet' 
-              ? 'The miners are on their way!'
+              ? 'Your miners are on their way!'
               : 'Selling your Kerium',
           txConfirmed: ({contract}) => 
             contract.methodName === 'sendMinersToPlanet' 

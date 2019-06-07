@@ -1744,10 +1744,10 @@ bn.js@4.11.8, bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.11.0, bn.js@^4.
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
   integrity sha512-ItfYfPLkWHUjckQCk8xC+LwxgK8NYcXywGigJgSwOP8Y2iyWT4f2vsZnoOXTTbo+o5yXmIUJ4gn5538SO5S3gA==
 
-bnc-assist@0.8.5:
-  version "0.8.5"
-  resolved "https://registry.yarnpkg.com/bnc-assist/-/bnc-assist-0.8.5.tgz#c697a7f8507fabe482522ac3edc978f6982e0677"
-  integrity sha512-KRk9QlTl49c1dobQ7juaLfhg8+g4PNXjVsVTzcUwIp7PxeeyTYqqXybT7VAeSKw4CX/QrnXpmxSS2UN4T30sgQ==
+bnc-assist@0.8.6:
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/bnc-assist/-/bnc-assist-0.8.6.tgz#97590685ba1ebbe840c29703bb79f2e91c4616a0"
+  integrity sha512-dJ6W8G6fCkhrBLqRiAi9a/tZpC9yaVSxTB2CsN8I1q3esi0t9nGkGAWlZSv1P1rpEbtndBWlMBUqvyhafTYicA==
   dependencies:
     "@babel/polyfill" "^7.0.0"
     bluebird "^3.5.3"
