@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import { NETWORK_ID } from "./config"
+import { initializeAssist, onboardUser } from "./utils/assist"
 import SpaceMinersContract from "./contracts/SpaceMiners.json"
 import getWeb3 from "./utils/getWeb3"
 import Background from "./components/Background.jsx"
@@ -33,13 +35,16 @@ class App extends Component {
   componentDidMount = async () => {
     try {
       const web3 = await getWeb3()
+      const assistInstance = initializeAssist(web3)
+      await onboardUser()
       const accounts = await web3.eth.getAccounts()
-      const networkId = await web3.eth.net.getId()
-      const network = SpaceMinersContract.networks[networkId]
-      const contractAddress = CONTRACT_ADDRESSES[networkId]
-      const contract = new web3.eth.Contract(
-        SpaceMinersContract.abi,
-        contractAddress || (network && network.address)
+      const network = SpaceMinersContract.networks[NETWORK_ID]
+      const contractAddress = CONTRACT_ADDRESSES[NETWORK_ID]
+      const contract = assistInstance.Contract(
+        new web3.eth.Contract(
+          SpaceMinersContract.abi,
+          contractAddress || (network && network.address)
+        )
       )
 
       console.log("Successfully connected to web3")
@@ -87,7 +92,7 @@ class App extends Component {
       const planetCapacity = await methods.PLANET_CAPACITY().call()
       const planetPopulation = await methods.planetPopulation().call()
       const amountInEth = await methods
-        .calculateContinuousBurnReturn(keriumHoldings)
+        .calculateContinuousBurnReturn(keriumHoldings.toString())
         .call()
       const usersMinersOnPlanet = await methods
         .getNumUsersMinersOnPlanet(accounts[0])
@@ -123,7 +128,6 @@ class App extends Component {
         })
         .catch(e => {
           this.setState({ processingTransaction: false })
-          alert("Error, please try again.")
         })
     }
   }
@@ -141,17 +145,15 @@ class App extends Component {
         .send({ from, value: 0, gas: 300000 })
         .then(() => {
           this.setState({ processingTransaction: false })
-          alert("All Crystals have been sold")
         })
         .catch(e => {
           this.setState({ processingTransaction: false })
-          alert("Error, please try again.")
         })
     }
   }
 
   convertFromWeiUints = amount => {
-    return this.state.web3.utils.fromWei(amount, "ether")
+    return this.state.web3.utils.fromWei(amount.toString(), "ether")
   }
 
   render() {

@@ -10,7 +10,7 @@ class Header extends Component {
           left: "1%",
           top: "3%",
           width: "98%",
-          zIndex: 1000,
+          zIndex: 100,
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
