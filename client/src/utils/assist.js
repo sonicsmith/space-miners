@@ -19,6 +19,7 @@ export function getAssist(web3) {
       {
         dappId: ASSIST_DAPP_ID,
         networkId: NETWORK_ID,
+        mobileBlocked: true,
         web3,
         style: { darkMode: true },
         messages: {
