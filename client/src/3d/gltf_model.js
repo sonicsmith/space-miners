@@ -1,5 +1,4 @@
 import * as THREE from "three"
-import { OrbitControls, MTLLoader, OBJLoader } from "./loader"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js"
 
 import Model from "./model"
@@ -8,12 +7,9 @@ class GltfModel extends Model {
   static defaultProps = Object.assign({}, Model.defaultProps, {
     loader: "gltf"
   })
-  constructor(props) {
-    super(props)
-    // console.log(props)
-  }
+
   load3dModel() {
-    var { src, texPath } = this.props
+    var { src } = this.props
 
     if (!src) return false
 

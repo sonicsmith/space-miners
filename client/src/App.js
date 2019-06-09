@@ -6,6 +6,7 @@ import getWeb3 from "./utils/getWeb3"
 import Background from "./components/Background.jsx"
 import HUD from "./components/HUD"
 import SpacecraftLauncher from "./components/SpacecraftLauncher.jsx"
+import LoadingSpinner from "./components/LoadingSpinner.jsx"
 
 const CONTRACT_ADDRESSES = {
   1: "0x3d5c028F34d29910C465d7DF3c19e12bc58e18EA",
@@ -169,15 +170,6 @@ class App extends Component {
       processingTransaction
     } = this.state
 
-    if (!web3) {
-      return <Background />
-    }
-
-    const costToSend = web3.utils.fromWei(
-      (numMinersToSend * priceToMine).toString(),
-      "ether"
-    )
-
     const gotData =
       web3 &&
       numMinersToSend &&
@@ -187,6 +179,20 @@ class App extends Component {
       usersMinersOnPlanet &&
       keriumHoldings &&
       amountInEth
+
+    if (!gotData) {
+      return (
+        <div>
+          <LoadingSpinner />
+          <Background />
+        </div>
+      )
+    }
+
+    const costToSend = web3.utils.fromWei(
+      (numMinersToSend * priceToMine).toString(),
+      "ether"
+    )
 
     return (
       <div>
@@ -199,22 +205,21 @@ class App extends Component {
               }}
             />
           )}
-          {gotData && (
-            <HUD
-              planetPopulation={planetPopulation}
-              planetCapacity={planetCapacity}
-              keriumHoldings={this.convertFromWeiUints(keriumHoldings)}
-              usersMinersOnPlanet={usersMinersOnPlanet}
-              costToSend={costToSend}
-              numMinersToSend={numMinersToSend}
-              amountInEth={this.convertFromWeiUints(amountInEth)}
-              setMinersToSend={num => this.setState({ numMinersToSend: num })}
-              sendMinersToPlanet={this.sendMinersToPlanet}
-              sellKerium={this.sellKerium}
-              processingTransaction={processingTransaction}
-              demoMode={NETWORK_ID === 3}
-            />
-          )}
+
+          <HUD
+            planetPopulation={planetPopulation}
+            planetCapacity={planetCapacity}
+            keriumHoldings={this.convertFromWeiUints(keriumHoldings)}
+            usersMinersOnPlanet={usersMinersOnPlanet}
+            costToSend={costToSend}
+            numMinersToSend={numMinersToSend}
+            amountInEth={this.convertFromWeiUints(amountInEth)}
+            setMinersToSend={num => this.setState({ numMinersToSend: num })}
+            sendMinersToPlanet={this.sendMinersToPlanet}
+            sellKerium={this.sellKerium}
+            processingTransaction={processingTransaction}
+            demoMode={NETWORK_ID === 3}
+          />
         </Background>
       </div>
     )

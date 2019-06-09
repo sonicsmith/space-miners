@@ -13,7 +13,6 @@ class Background extends Component {
           <div className="sun" />
         </div>
         <div className="ground">
-          {/* <div className="wave vertical middle wave-0" /> */}
           <div className="wave vertical left wave-0" />
           <div className="wave vertical left wave-1" />
           <div className="wave vertical left wave-2" />

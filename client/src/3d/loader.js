@@ -561,6 +561,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 				scope.update();
 				break;
 
+				default:
+
 		}
 
 	}
@@ -2599,6 +2601,8 @@ THREE.ColladaLoader.prototype = {
 						data.inputs[ semantic ] = id;
 						break;
 
+						default:
+
 				}
 
 			}
@@ -2760,6 +2764,8 @@ THREE.ColladaLoader.prototype = {
 				case 'scale':
 					console.warn( 'THREE.ColladaLoader: Animation transform type "%s" not yet implemented.', transform );
 					break;
+
+					default:
 
 			}
 
@@ -2999,6 +3005,8 @@ THREE.ColladaLoader.prototype = {
 						data.animations.push( parseId( child.getAttribute( 'url' ) ) );
 						break;
 
+						default:
+
 				}
 
 			}
@@ -3062,6 +3070,8 @@ THREE.ColladaLoader.prototype = {
 						console.warn( 'THREE.ColladaLoader: Morph target animation not supported yet.' );
 						break;
 
+						default:
+
 				}
 
 			}
@@ -3101,6 +3111,8 @@ THREE.ColladaLoader.prototype = {
 						data.vertexWeights = parseVertexWeights( child );
 						break;
 
+						default:
+
 				}
 
 			}
@@ -3128,6 +3140,7 @@ THREE.ColladaLoader.prototype = {
 						var id = parseId( child.getAttribute( 'source' ) );
 						data.inputs[ semantic ] = id;
 						break;
+						default:
 
 				}
 
@@ -3165,6 +3178,8 @@ THREE.ColladaLoader.prototype = {
 					case 'v':
 						data.v = parseInts( child.textContent );
 						break;
+
+						default:
 
 				}
 
@@ -3371,6 +3386,8 @@ THREE.ColladaLoader.prototype = {
 						data.profile = parseEffectProfileCOMMON( child );
 						break;
 
+						default:
+
 				}
 
 			}
@@ -3406,6 +3423,8 @@ THREE.ColladaLoader.prototype = {
 						data.extra = parseEffectExtra( child );
 						break;
 
+						default:
+
 				}
 
 			}
@@ -3434,6 +3453,8 @@ THREE.ColladaLoader.prototype = {
 						data.samplers[ sid ] = parseEffectSampler( child );
 						break;
 
+						default:
+
 				}
 
 			}
@@ -3455,6 +3476,8 @@ THREE.ColladaLoader.prototype = {
 					case 'init_from':
 						data.init_from = child.textContent;
 						break;
+
+						default:
 
 				}
 
@@ -3479,6 +3502,8 @@ THREE.ColladaLoader.prototype = {
 					case 'source':
 						data.source = child.textContent;
 						break;
+
+						default:
 
 				}
 
@@ -3507,6 +3532,8 @@ THREE.ColladaLoader.prototype = {
 						data.type = child.nodeName;
 						data.parameters = parseEffectParameters( child );
 						break;
+
+						default:
 
 				}
 
@@ -3542,6 +3569,8 @@ THREE.ColladaLoader.prototype = {
 						};
 						break;
 
+						default:
+
 				}
 
 			}
@@ -3574,6 +3603,8 @@ THREE.ColladaLoader.prototype = {
 						data[ child.nodeName ] = { id: child.getAttribute( 'texture' ), extra: parseEffectParameterTexture( child ) };
 						break;
 
+						default:
+
 				}
 
 			}
@@ -3600,6 +3631,8 @@ THREE.ColladaLoader.prototype = {
 						parseEffectParameterTextureExtra( child, data );
 						break;
 
+						default:
+
 				}
 
 			}
@@ -3621,6 +3654,8 @@ THREE.ColladaLoader.prototype = {
 					case 'technique':
 						parseEffectParameterTextureExtraTechnique( child, data );
 						break;
+
+						default:
 
 				}
 
@@ -3666,6 +3701,8 @@ THREE.ColladaLoader.prototype = {
 
 						break;
 
+						default:
+
 				}
 
 			}
@@ -3687,6 +3724,8 @@ THREE.ColladaLoader.prototype = {
 					case 'technique':
 						data.technique = parseEffectExtraTechnique( child );
 						break;
+
+						default:
 
 				}
 
@@ -3711,6 +3750,8 @@ THREE.ColladaLoader.prototype = {
 					case 'double_sided':
 						data[ child.nodeName ] = parseInt( child.textContent );
 						break;
+
+						default:
 
 				}
 
@@ -3751,6 +3792,8 @@ THREE.ColladaLoader.prototype = {
 					case 'instance_effect':
 						data.url = parseId( child.getAttribute( 'url' ) );
 						break;
+
+						default:
 
 				}
 
@@ -3867,6 +3910,7 @@ THREE.ColladaLoader.prototype = {
 						if ( parameter.texture ) material.emissiveMap = getTexture( parameter.texture );
 						break;
 
+						default:
 				}
 
 			}
@@ -3975,6 +4019,8 @@ THREE.ColladaLoader.prototype = {
 						data.optics = parseCameraOptics( child );
 						break;
 
+						default:
+
 				}
 
 			}
@@ -3993,6 +4039,8 @@ THREE.ColladaLoader.prototype = {
 
 					case 'technique_common':
 						return parseCameraTechnique( child );
+
+						default:
 
 				}
 
@@ -4019,6 +4067,8 @@ THREE.ColladaLoader.prototype = {
 						data.parameters = parseCameraParameters( child );
 
 						break;
+
+						default:
 
 				}
 
@@ -4047,6 +4097,8 @@ THREE.ColladaLoader.prototype = {
 					case 'aspect_ratio':
 						data[ child.nodeName ] = parseFloat( child.textContent );
 						break;
+
+						default:
 
 				}
 
@@ -4135,6 +4187,8 @@ THREE.ColladaLoader.prototype = {
 						data = parseLightTechnique( child );
 						break;
 
+						default:
+
 				}
 
 			}
@@ -4162,6 +4216,8 @@ THREE.ColladaLoader.prototype = {
 
 						data.technique = child.nodeName;
 						data.parameters = parseLightParameters( child );
+
+						default:
 
 				}
 
@@ -4197,6 +4253,8 @@ THREE.ColladaLoader.prototype = {
 						data.distance = f ? Math.sqrt( 1 / f ) : 0;
 						break;
 
+						default:
+
 				}
 
 			}
@@ -4226,6 +4284,8 @@ THREE.ColladaLoader.prototype = {
 				case 'ambient':
 					light = new THREE.AmbientLight();
 					break;
+
+					default:
 
 			}
 
@@ -4342,6 +4402,8 @@ THREE.ColladaLoader.prototype = {
 						}
 						break;
 
+						default:
+
 				}
 
 			}
@@ -4403,6 +4465,8 @@ THREE.ColladaLoader.prototype = {
 					case 'p':
 						primitive.p = parseInts( child.textContent );
 						break;
+
+						default:
 
 				}
 
