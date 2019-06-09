@@ -212,6 +212,7 @@ class App extends Component {
               sendMinersToPlanet={this.sendMinersToPlanet}
               sellKerium={this.sellKerium}
               processingTransaction={processingTransaction}
+              demoMode={NETWORK_ID === 3}
             />
           )}
         </Background>

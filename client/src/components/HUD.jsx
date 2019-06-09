@@ -16,7 +16,8 @@ class HUD extends Component {
       setMinersToSend,
       sendMinersToPlanet,
       sellKerium,
-      processingTransaction
+      processingTransaction,
+      demoMode
     } = this.props
     let status = processingTransaction
     if (!processingTransaction) {
@@ -52,9 +53,10 @@ class HUD extends Component {
         </div>
         <div>
           <NeonText
-            title={"DASHBOARD"}
+            title={demoMode ? "DEMO MODE" : "DASHBOARD"}
             subtitle={"number of miners"}
             textAlign={"right"}
+            flashingTitle={demoMode}
           />
           <MinerCountSelector
             numMinersToSend={numMinersToSend}
