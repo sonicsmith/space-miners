@@ -374,7 +374,7 @@ class Model extends React.Component {
     })
     this.lights = []
 
-    this.array_children.map(o => {
+    this.array_children.forEach(o => {
       var { props } = o
 
       // console.log(props)
