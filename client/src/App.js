@@ -48,24 +48,16 @@ class App extends Component {
       )
 
       console.log("Successfully connected to web3")
-      const checkIfHacked = a => {
-        if (a[0] === "0xf16fbebef9293b196781a655b1f08cdec34bfe0b") {
-          alert(
-            "This contract was hacked.\nPlease contact dappcentral@gmail.com to recieve a refund."
-          )
-        }
-      }
-
-      // Putting in for hacked accounts
-      checkIfHacked(accounts)
-
-      window.ethereum.on("accountsChanged", newAccounts => {
-        checkIfHacked(newAccounts)
-        this.setState({
-          accounts: newAccounts
+      try {
+        window.ethereum.on("accountsChanged", newAccounts => {
+          this.setState({
+            accounts: newAccounts
+          })
+          this.refresh()
         })
-        this.refresh()
-      })
+      } catch (error) {
+        // Skip account change action
+      }
       this.setState(
         {
           web3,
