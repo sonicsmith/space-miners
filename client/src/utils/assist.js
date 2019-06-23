@@ -20,12 +20,21 @@ export function getAssist(web3) {
       networkId: NETWORK_ID,
       mobileBlocked: false,
       web3,
-      style: { darkMode: true },
+      style: {
+        darkMode: true,
+        notificationsPosition: { desktop: "topLeft", mobile: "top" },
+        css: `
+          .bn-onboard-modal { background: #454752; border-radius: 10px; box-shadow: -3px 3px 15px #71A9BA; }
+          .h4 { color: #FFF; text-shadow: -2px 2px 2px #71A9BA; }
+          .bn-notification { box-shadow: -3px 3px 15px #71A9BA; }
+        `
+      },
+
       messages: {
         txRequest: () => "Waiting for you to confirm the action",
         txStall: ({ contract }) =>
           contract.methodName === "sendMinersToPlanet"
-            ? `Sending the miners is taking longer than expected...`
+            ? `The miners are taking longer to get to the planet than expected...`
             : `Selling Kerium is taking longer than expected...`,
         txSent: ({ contract }) =>
           contract.methodName === "sendMinersToPlanet"
@@ -37,7 +46,7 @@ export function getAssist(web3) {
             : "Selling your Kerium",
         txConfirmed: ({ contract }) =>
           contract.methodName === "sendMinersToPlanet"
-            ? "Miners deployed!"
+            ? "Your miners have arrived on the planet!"
             : "Your Kerium sold!",
         txFailed: ({ contract }) =>
           contract.methodName === "sendMinersToPlanet"

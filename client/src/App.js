@@ -7,6 +7,7 @@ import Background from "./components/Background.jsx"
 import HUD from "./components/HUD"
 import SpacecraftLauncher from "./components/SpacecraftLauncher.jsx"
 import LoadingSpinner from "./components/LoadingSpinner.jsx"
+import Error from "./components/Error.jsx"
 
 const CONTRACT_ADDRESSES = {
   1: "0x3d5c028F34d29910C465d7DF3c19e12bc58e18EA",
@@ -29,7 +30,8 @@ class App extends Component {
     usersMinersOnPlanet: 0,
     keriumReserves: 0,
     //
-    processingTransaction: false
+    processingTransaction: false,
+    web3Error: false
   }
 
   componentDidMount = async () => {
@@ -66,11 +68,12 @@ class App extends Component {
         },
         this.refresh
       )
+      assistInstance.notify("success", "This is a test notification")
     } catch (error) {
       // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`
-      )
+      this.setState({
+        web3Error: true
+      })
       console.error(error)
     }
   }
@@ -149,6 +152,9 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.web3Error) {
+      return <Error />
+    }
     const {
       web3,
       numMinersToSend,
