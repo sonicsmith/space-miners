@@ -68,7 +68,6 @@ class App extends Component {
         },
         this.refresh
       )
-      assistInstance.notify("success", "This is a test notification")
     } catch (error) {
       // Catch any errors for any of the above operations.
       this.setState({
