@@ -22,11 +22,13 @@ export function getAssist(web3) {
       web3,
       style: {
         darkMode: true,
-        notificationsPosition: { desktop: "topLeft", mobile: "top" },
+        notificationsPosition: { desktop: "topRight", mobile: "top" },
         css: `
-          .bn-onboard-modal { background: #454752; border-radius: 10px; box-shadow: -3px 3px 15px #71A9BA; }
-          .h4 { color: #FFF; text-shadow: -2px 2px 2px #71A9BA; }
-          .bn-notification { box-shadow: -3px 3px 15px #71A9BA; }
+          .bn-onboard-modal { border-radius: 10px; box-shadow: -3px 3px 15px #71A9BA; }
+          .bn-onboard-basic .bn-onboard-sidebar { border-radius: 10px; }
+          .bn-onboard-basic .bn-onboard-main { border-radius: 10px; }
+          .h4 { color: #FFF; text-shadow: -2px 2px 3px #71A9BA; }
+          .bn-notification { border-radius: 5px; box-shadow: -3px 3px 15px #71A9BA; }
         `
       },
 
