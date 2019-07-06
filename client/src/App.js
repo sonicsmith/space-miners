@@ -114,8 +114,12 @@ class App extends Component {
       })
       methods
         .sendMinersToPlanet(numMinersToSend)
-        .send({ from, value, gas: 300000 }, () => {
-          this.setState({ numMinersInFlight: Math.min(5, numMinersToSend) })
+        .send({ from, value, gas: 300000 }, res => {
+          if (!res) {
+            this.setState({ numMinersInFlight: Math.min(5, numMinersToSend) })
+          } else {
+            this.setState({ processingTransaction: false })
+          }
         })
         .then(() => {
           this.setState({ processingTransaction: false })
